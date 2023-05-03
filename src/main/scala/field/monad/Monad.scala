@@ -2,7 +2,7 @@ package field.monad
 
 /**
  * Monad Type class
- * @tparam F
+ * @tparam F the type of the monad
  */
 trait Monad[F[_]]:
   def unit[A](a: => A): F[A]
