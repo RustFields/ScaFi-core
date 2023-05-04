@@ -21,3 +21,5 @@ object Field:
   def lift[A](a: A): Field[A] = new Field[A]:
     def getMap: Map[DeviceId, A] = Map.empty
     def default: A = a
+
+  def changeDef[A](field: Field[A], newDefault: A): Field[A] = Field(field.getMap, newDefault)
