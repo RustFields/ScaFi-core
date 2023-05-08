@@ -18,13 +18,6 @@ trait Path:
   def pull(): Path
 
   /**
-   * Checks if the path is equal to another path
-   * @param path the path to check
-   * @return true if the paths are equal, false otherwise
-   */
-  def isEqualTo(path: Path): Boolean
-
-  /**
    * Checks if the path is the root path
    * @return true if the path is the root path, false otherwise
    */
@@ -58,8 +51,6 @@ object Path:
     override def pull(): Path = path match
       case _ :: p => PathImpl(p)
       case _ => throw new Exception()
-
-    override def isEqualTo(path: Path): Boolean = this == path
 
     override def isRoot: Boolean = path.isEmpty
 

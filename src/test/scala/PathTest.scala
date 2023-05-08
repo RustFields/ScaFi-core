@@ -26,18 +26,6 @@ class PathTest extends AnyFlatSpec:
     assert(path.pull().path == List(Rep(0), Nbr(1)).reverse)
   }
 
-  it should "be equal to another Path" in {
-    val path1 = Path(Rep(0), Nbr(1), Nbr(2))
-    val path2 = Path(Rep(0), Nbr(1), Nbr(2))
-    assert(path1 isEqualTo path2)
-  }
-
-  it should "NOT be equal to another Path" in {
-    val path1 = Path(Rep(0), Nbr(1), Nbr(2))
-    val path2 = Path(Rep(0), Nbr(1), Nbr(3))
-    assert(!(path1 isEqualTo path2))
-  }
-
   it should "be root" in {
     val path = Path()
     assert(path.isRoot)
