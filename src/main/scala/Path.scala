@@ -4,6 +4,7 @@ trait Path:
   def isEqualTo(path: Path): Boolean
   def isRoot: Boolean
   def head: Slot
+  def path: List[Slot]
   def /(slot: Slot): Path = push(slot)
 
 object Path:
