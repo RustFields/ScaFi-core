@@ -58,3 +58,8 @@ class PathTest extends AnyFlatSpec:
     val pathAfterAdd = path / FoldHood(1) / Branch(1, false)
     assert(pathAfterAdd.path == List(Rep(0), FoldHood(1), Branch(1, false)).reverse)
   }
+
+  it should "print correctly" in {
+    val path = Path(Rep(0), Nbr(1), Nbr(2))
+    assert(path.toString == "P:/Rep(0)/Nbr(1)/Nbr(2)")
+  }
