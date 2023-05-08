@@ -65,4 +65,4 @@ object Path:
 
     override def head: Slot = path.head
 
-    override def toString: String = path.reverse.mkString("/")
+    override def toString: String = "P:/" + path.reverse.mkString("/")
