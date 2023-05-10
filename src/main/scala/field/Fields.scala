@@ -31,5 +31,8 @@ trait Fields:
 
       def default: A = a
 
+    def changeSelf[A](selfValue: A, field: Field[A]): Field[A] =
+      Field[A](field.getMap ++ Map(mid -> selfValue), field.default)
+ 
     def changeDef[A](field: Field[A], newDefault: A): Field[A] = Field(field.getMap, newDefault)
 
