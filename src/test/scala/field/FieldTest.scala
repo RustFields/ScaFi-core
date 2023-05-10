@@ -1,4 +1,4 @@
-package fields
+package field
 
 import field.{DeviceId, Fields}
 import lang.AuxiliaryConstructs
