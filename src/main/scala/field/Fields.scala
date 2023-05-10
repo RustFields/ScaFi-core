@@ -19,10 +19,10 @@ trait Fields:
 
       def default: A = d
 
-    def apply[A](m: Map[DeviceId, A])(using defaultable: Defaultable[A]): Field[A] = new Field[A]:
+    def apply[A: Defaultable](m: Map[DeviceId, A]): Field[A] = new Field[A]:
       def getMap: Map[DeviceId, A] = m
 
-      def default: A = defaultable.default
+      def default: A = summon[Defaultable[A]].default
 
     def lift[A](a: A): Field[A] = new Field[A]:
       def getMap: Map[DeviceId, A] = Map.empty
