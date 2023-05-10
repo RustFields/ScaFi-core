@@ -23,6 +23,6 @@ class FieldsTest extends AnyFunSuite with FieldTest:
 
   test("Change default value") {
     val f = Field(Map(mid -> 0), 0)
-    val newField = Field.changeDef(f, 1)
+    val newField = Field.changeDef(1, f)
     assert(newField.default == 1)
   }
