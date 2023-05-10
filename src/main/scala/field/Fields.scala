@@ -2,9 +2,11 @@ package field
 
 import field.GlobalField
 import field.defaultable.Defaultable
+import lang.AuxiliaryConstructs
 
 
 trait Fields:
+  self: AuxiliaryConstructs =>
   /**
    * A field is a map from device ids to values of type A.
    * When a device is not in the map, the default value is used.
