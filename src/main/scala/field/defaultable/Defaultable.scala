@@ -6,3 +6,13 @@ package field.defaultable
  */
 trait Defaultable[A]:
   def default: A
+
+object DefaultableInstances:
+  given Defaultable[Int] with
+    def default = 0
+
+  given Defaultable[String] with
+    def default = ""
+
+  given Defaultable[Boolean] with
+    def default = false
