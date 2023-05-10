@@ -12,6 +12,7 @@ class FieldsTest extends AnyFunSuite with FieldTest:
 
   test("Lift a value to a field") {
     val f = Field.lift(1)
+    assert(f.getMap.isEmpty)
     assert(f.default == 1)
   }
 
