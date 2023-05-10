@@ -1,11 +1,12 @@
-package fields
+package field
 
 import org.scalatest.funsuite.AnyFunSuite
-import fields.FieldTest
+import field.FieldTest
+import field.defaultable.DefaultableInstances.given
 
 class FieldsTest extends AnyFunSuite with FieldTest:
   test("Field creation") {
-    val f: Field[Int] = Field(Map(mid -> 1), 0)
+    val f: Field[Int] = Field(Map(mid -> 1))
     assert(f.getMap.get(mid).contains(1))
     assert(f.default == 0)
   }
@@ -17,7 +18,7 @@ class FieldsTest extends AnyFunSuite with FieldTest:
   }
 
   test("Change self value") {
-    val f = Field(Map(mid -> 0), 0)
+    val f = Field(Map(mid -> 0))
     val newField = Field.changeSelf(1, f)
     assert(newField.getMap.get(mid).contains(1))
   }
