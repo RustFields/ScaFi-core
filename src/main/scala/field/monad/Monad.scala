@@ -1,6 +1,7 @@
 package field.monad
 
 import field.Fields
+import lang.AuxiliaryConstructs
 
 trait Monads:
   /**
@@ -18,7 +19,7 @@ trait Monads:
         fa.flatMap(a => unit(f(a)))
 
 
-trait MonadicFields extends Monads with Fields:
+trait MonadicFields extends Monads with Fields with AuxiliaryConstructs:
   /**
    * Field Monad instance
    */
