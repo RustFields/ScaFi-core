@@ -14,9 +14,9 @@ class ExportTest extends AnyFlatSpec:
 
   it should "get the correct value" in {
     val testExport = ExportImpl(Map(Rep(0) -> "1", Nbr(1) -> "2", Nbr(2) -> "3"))
-    val result = testExport.get(Path(Nbr(1))).get
     val expected = "2"
-    assert(result == expected)
+    val result: Option[String] = testExport.get(Path(Nbr(1)))
+    assert(result.get == expected)
   }
 
   it should "be different from another export (values)" in {
