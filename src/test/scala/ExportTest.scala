@@ -58,3 +58,23 @@ class ExportTest extends AnyFlatSpec:
     // Assert
     assert(result == expected)
   }
+
+  it should "return the map with all the values" in {
+    // Arrange
+    val testExport = ExportImpl(Map(Rep(0) -> "1", Nbr(1) -> "2", Path() -> "test"))
+    val expected = Map(Rep(0) -> "1", Nbr(1) -> "2", Path() -> "test")
+    // Act
+    val result = testExport.paths
+    // Assert
+    assert(result == expected)
+  }
+
+  it should "return the map with all the values of a given type" in {
+    // Arrange
+    val testExport = ExportImpl(Map(Rep(0) -> "1", Nbr(1) -> "2", Path() -> "test"))
+    val expected = Map(Rep(0) -> "1", Nbr(1) -> "2", Path() -> "test")
+    // Act
+    val result = testExport.getMap[String]
+    // Assert
+    assert(result == expected)
+  }
