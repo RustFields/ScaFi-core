@@ -36,3 +36,9 @@ trait Export:
    * @return a map of all the values
    */
   def getMap[A]: Map[Path, A] = paths.view.mapValues(_.asInstanceOf[A]).toMap
+
+case class ExportImpl(private val map: Map[Path, Any] = Map.empty) extends Export:
+  override def put[A](path: Path, value: A): Export = new ExportImpl(map + (path -> value))
+  override def get[A](path: Path): Option[A] = map.get(path).map(_.asInstanceOf[A])
+  override def paths: Map[Path, Any] = map
+  override def root[A](): A = get(Path()).get
