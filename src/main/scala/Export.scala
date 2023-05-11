@@ -28,17 +28,21 @@ trait Export:
    * NB: the values are not typed
    * @return a map of all the values
    */
-  def paths: Map[Path, Any]
+  def exports: Map[Path, Any]
 
   /**
    * Get all the values in the export.
    * @tparam A the type of the values
    * @return a map of all the values
    */
-  def getMap[A]: Map[Path, A] = paths.view.mapValues(_.asInstanceOf[A]).toMap
+  def getMap[A]: Map[Path, A] = exports.view.mapValues(_.asInstanceOf[A]).toMap
 
-case class ExportImpl(private val map: Map[Path, Any] = Map.empty) extends Export:
-  override def put[A](path: Path, value: A): Export = new ExportImpl(map + (path -> value))
-  override def get[A](path: Path): Option[A] = map.get(path).map(_.asInstanceOf[A])
-  override def paths: Map[Path, Any] = map
-  override def root[A](): A = get(Path()).get
+object Export:
+  def empty(): Export = ExportImpl()
+  def apply(exps: (Path, Any)*): Export = ExportImpl(exps.toMap)
+  def apply(exps: Map[Path, Any]): Export = ExportImpl(exps)
+
+  private case class ExportImpl(override val exports: Map[Path, Any] = Map.empty) extends Export:
+    override def put[A](path: Path, value: A): Export = ExportImpl(exports + (path -> value))
+    override def get[A](path: Path): Option[A] = exports.get(path).map(_.asInstanceOf[A])
+    override def root[A](): A = get(Path()).get
