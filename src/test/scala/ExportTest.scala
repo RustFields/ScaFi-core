@@ -18,4 +18,21 @@ class ExportTest extends AnyFlatSpec:
     val expected = "2"
     assert(result == expected)
   }
-  
+
+  it should "be different from another export (values)" in {
+    val export1 = ExportImpl(Map(Rep(0) -> "test", Nbr(1) -> "test"))
+    val export2 = ExportImpl(Map(Rep(0) -> "value", Nbr(1) -> "test"))
+    assert(export1 != export2)
+  }
+
+  it should "be different from another export (paths)" in {
+    val export1 = ExportImpl(Map(Rep(0) -> "test", Nbr(1) -> "test"))
+    val export2 = ExportImpl(Map(Rep(1) -> "test", Nbr(1) -> "test"))
+    assert(export1 != export2)
+  }
+
+  it should "be equal to another export correctly" in {
+    val export1 = ExportImpl(Map(Rep(0) -> "test", Nbr(1) -> "test"))
+    val export2 = ExportImpl(Map(Rep(0) -> "test", Nbr(1) -> "test"))
+    assert(export1 == export2)
+  }
