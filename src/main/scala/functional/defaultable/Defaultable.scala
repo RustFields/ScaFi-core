@@ -1,4 +1,4 @@
-package field.defaultable
+package functional.defaultable
 
 /**
  * Trait for types that have a default value.
