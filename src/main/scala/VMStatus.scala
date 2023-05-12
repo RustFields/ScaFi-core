@@ -1,40 +1,13 @@
-// VMStatus is an immutable object. Each update creates a new VMStatus.
 trait VMStatus:
-  // The current path
   val path: Path
-
-  // The number of nodes at the same level in the tree.
-  // in other words, if we have two calls to the same construct we can differentiate between the two using this index.
-  /*
-            rep
-           /   \
-         nbr   nbr
-
-         the two calls to nbr() will be identified as nbr(0) and nbr(1)
-   */
   val index: Int
-  // The ID of the neighbour where the computation currently is.
   val neighbour: Option[Int]
-
-  // Returns true if the field 'neighbourg' is defined, false otherwise
   def isFolding: Boolean
-
-  // update the VMStatus by setting the field 'neighbourg' to the parameter 'id'
   def foldInto(id: Option[Int]): VMStatus
-
-  // Update the VMStatus by setting the field 'neighbourg' to None
   def foldOut(): VMStatus
-
-  // Push the specified Slot on the current path. Reset the index.
   def nest(s: Slot): VMStatus
-
-  // increment the current index
   def incIndex(): VMStatus
-
-  // push the current (path, index, neighbour) on the stack
   def push(): VMStatus
-
-  // pop the first element of the stack
   def pop(): VMStatus
 
 object VMStatus:
