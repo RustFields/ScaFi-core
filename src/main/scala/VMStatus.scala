@@ -1,5 +1,3 @@
-package RoundVM
-
 // VMStatus is an immutable object. Each update creates a new VMStatus.
 trait VMStatus:
   // The current path

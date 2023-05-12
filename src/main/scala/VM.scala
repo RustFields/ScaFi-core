@@ -1,5 +1,3 @@
-package RoundVM
-
 trait VM:
 
   def status: VMStatus
