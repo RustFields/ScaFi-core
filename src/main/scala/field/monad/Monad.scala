@@ -3,6 +3,8 @@ package field.monad
 import field.Fields
 import lang.AuxiliaryConstructs
 
+import scala.annotation.targetName
+
 trait Monads:
   /**
    * Monad Type class
@@ -17,6 +19,14 @@ trait Monads:
 
       def map[B](f: A => B): F[B] =
         fa.flatMap(a => unit(f(a)))
+        
+      @targetName("mapWith")
+      def >>[B](f: A => B): F[B] =
+        fa.map(f)
+        
+      @targetName("flatMapWith")
+      def >>=[B](f: A => F[B]): F[B] =
+        fa.flatMap(f)
 
 
 trait MonadicFields extends Monads with Fields with AuxiliaryConstructs:
