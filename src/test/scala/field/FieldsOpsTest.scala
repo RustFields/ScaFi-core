@@ -1,10 +1,10 @@
 package field
 
-import field.monad.MonadicFields
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.matchers.should.Matchers.shouldBe
 import field.defaultable.DefaultableInstances.given
+import field.MonadicFields
 
 class FieldsOpsTest extends AnyFlatSpec with FieldTest with MonadicFields:
 
