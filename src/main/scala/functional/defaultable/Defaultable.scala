@@ -16,3 +16,6 @@ object DefaultableInstances:
 
   given Defaultable[Boolean] with
     def default = false
+    
+  given[A]: Defaultable[List[A]] with
+    def default: List[A] = Nil
