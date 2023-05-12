@@ -1,7 +1,7 @@
 package field
 
 import field.GlobalField
-import field.defaultable.Defaultable
+import functional.defaultable.Defaultable
 import lang.AuxiliaryConstructs
 
 

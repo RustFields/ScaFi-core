@@ -3,8 +3,8 @@ package field
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.matchers.should.Matchers.shouldBe
-import field.defaultable.DefaultableInstances.given
 import field.MonadicFields
+import functional.defaultable.DefaultableInstances.given
 
 class FieldsOpsTest extends AnyFlatSpec with FieldTest with MonadicFields:
 
