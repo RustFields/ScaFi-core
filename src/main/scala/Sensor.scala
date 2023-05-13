@@ -5,5 +5,4 @@ object Sensor:
 
   private case class SensorImpl(id: String) extends Sensor
 
-given Conversion[String, Sensor] with
-  def apply(name: String): Sensor = Sensor(name)
+given Conversion[String, Sensor] = Sensor(_)
