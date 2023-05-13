@@ -40,14 +40,7 @@ trait Context:
    *
    * @return the values
    */
-  def localSensor: Map[Sensor, Any]
-
-  /**
-   * TODO
-   *
-   * @return the values
-   */
-  def nbrSensors: Map[Sensor, Map[Int, Any]]
+  def localSensors: Map[Sensor, Any]
 
   /**
    * get the value of the given sensor.
@@ -55,7 +48,23 @@ trait Context:
    * @tparam T the type of the value
    * @return the value if it exists
    */
-  def sense[T](name: Sensor): Option[T]
+  def localSense[T](name: Sensor): Option[T]
+
+  /**
+   * The values perceived by the sensors for each neighbor of the device.
+   *
+   * @return the values
+   */
+  def nbrSensors: Map[Sensor, Map[Int, Any]]
+
+  /**
+   * get the value of the given sensor for the given neighbor.
+   * @param sensor the sensor
+   * @param nbr the neighbor
+   * @tparam T the type of the value
+   * @return the value if it exists
+   */
+  def nbrSense[T](sensor: Sensor)(nbr: Int): Option[T]
 
 object Context:
   def apply(selfID: Int,
@@ -68,13 +77,16 @@ object Context:
 
   private case class ContextImpl(override val selfID: Int,
                                  override val exports: Map[Int, Export],
-                                 override val localSensor: Map[Sensor, Any],
+                                 override val localSensors: Map[Sensor, Any],
                                  override val nbrSensors: Map[Sensor, Map[Int, Any]]) extends Context:
 
     override def put(id: Int, exp: Export): Context = copy(exports = exports + (id -> exp))
 
     override def readValue[A](id: Int, path: Path): Option[A] = exports get id flatMap (_.get[A](path))
 
-    override def toString: String = s"C[\n\tI:$selfID,\n\tE:$exports,\n\tS1:$localSensor,\n\tS2:$nbrSensors\n]"
+    override def toString: String = s"C[\n\tI:$selfID,\n\tE:$exports,\n\tS1:$localSensors,\n\tS2:$nbrSensors\n]"
 
-    override def sense[T](name: Sensor): Option[T] = localSensor get name map (_.asInstanceOf[T])
+    override def localSense[T](name: Sensor): Option[T] = localSensors get name map (_.asInstanceOf[T])
+
+    override def nbrSense[T](sensor: Sensor)(nbr: Int): Option[T] =
+      nbrSensors.get(sensor).flatMap(_.get(nbr)).map(_.asInstanceOf[T])
