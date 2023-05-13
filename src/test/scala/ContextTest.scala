@@ -1,5 +1,6 @@
 import Slot.{Nbr, Rep}
 import org.scalatest.flatspec.AnyFlatSpec
+import Sensor.given
 
 class ContextTest extends AnyFlatSpec:
 
@@ -9,8 +10,8 @@ class ContextTest extends AnyFlatSpec:
   val exp2: Export = Export(Map(Rep(0) -> "1", Nbr(1) -> "2"))
   val exp3: Export = Export(Map(Rep(0) -> "3", Rep(1) / Nbr(0) -> "4"))
   val exports: Map[Int, Export] = Map(2 -> exp2, 3 -> exp3)
-  val localSensor: Map[String, Any] = Map("one" -> true)
-  val nbrSensors: Map[SensorId, Map[Int, Any]] = Map.empty
+  val localSensor: Map[Sensor, Any] = Map(Sensor("one") -> true, Sensor("two") -> 2)
+  val nbrSensors: Map[Sensor, Map[Int, Any]] = Map.empty
   val context: Context = Context(1, exports, localSensor, nbrSensors)
 
   it should "add an export" in {
@@ -27,4 +28,11 @@ class ContextTest extends AnyFlatSpec:
     val result: Option[String] = context.readValue(2, Rep(1) / Nbr(0))
     // Assert
     result foreach (v => assert(v == "4"))
+  }
+
+  it should "get the right value of a local sensor" in {
+    // Act
+    val result = context.sense[Int]("two")
+    // Assert
+    result foreach (v => assert(v == 2))
   }
