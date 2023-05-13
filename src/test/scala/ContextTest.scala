@@ -32,7 +32,17 @@ class ContextTest extends AnyFlatSpec:
 
   it should "get the right value of a local sensor" in {
     // Act
-    val result = context.sense[Int]("two")
+    val result = context.localSense[Int]("two")
     // Assert
     result foreach (v => assert(v == 2))
+  }
+
+  it should "get the right value of a nbr sensor" in {
+    // Arrange
+    val nbrSensors = Map(Sensor("one") -> Map(0 -> 1, 1 -> 24), Sensor("two") -> Map(0 -> 66, 1 -> 23))
+    val context: Context = Context(1, exports, localSensor, nbrSensors)
+    // Act
+    val result = context.nbrSense[Int]("two")(1)
+    // Assert
+    result foreach (v => assert(v == 23))
   }
