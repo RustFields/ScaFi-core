@@ -18,14 +18,14 @@ class ContextTest extends AnyFlatSpec:
     // Arrange
     val expected: Export = Export(Map(Rep(0) -> "5", Nbr(0) -> "value"))
     // Act
-    val ctx: Context = context.put(4, expected)
+    val ctx: Context = context.putExport(4, expected)
     // Assert
     ctx.exports.toMap get 4 foreach (v => assert(v == expected))
   }
 
   it should "read a value of an export" in {
     // Act
-    val result: Option[String] = context.readValue(2, Rep(1) / Nbr(0))
+    val result: Option[String] = context.readExportValue(2, Rep(1) / Nbr(0))
     // Assert
     result foreach (v => assert(v == "4"))
   }
