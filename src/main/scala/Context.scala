@@ -40,28 +40,36 @@ trait Context:
    *
    * @return the values
    */
-  def localSensor: Map[SensorId, Any]
+  def localSensor: Map[Sensor, Any]
 
   /**
    * TODO
    *
    * @return the values
    */
-  def nbrSensors: Map[SensorId, Map[Int, Any]]
+  def nbrSensors: Map[Sensor, Map[Int, Any]]
+
+  /**
+   * get the value of the given sensor.
+   * @param name the name of the sensor
+   * @tparam T the type of the value
+   * @return the value if it exists
+   */
+  def sense[T](name: Sensor): Option[T]
 
 object Context:
   def apply(selfID: Int,
             exports: Iterable[(Int, Export)] = Map.empty,
-            localSensor: Map[SensorId, Any],
-            nbrSensors: Map[SensorId, Map[Int, Any]]): Context = ContextImpl(selfID,
+            localSensor: Map[Sensor, Any],
+            nbrSensors: Map[Sensor, Map[Int, Any]]): Context = ContextImpl(selfID,
     exports.toMap,
     localSensor,
     nbrSensors)
 
   private case class ContextImpl(override val selfID: Int,
                                  override val exports: Map[Int, Export],
-                                 override val localSensor: Map[SensorId, Any],
-                                 override val nbrSensors: Map[SensorId, Map[Int, Any]]) extends Context:
+                                 override val localSensor: Map[Sensor, Any],
+                                 override val nbrSensors: Map[Sensor, Map[Int, Any]]) extends Context:
 
     override def put(id: Int, exp: Export): Context = copy(exports = exports + (id -> exp))
 
@@ -69,4 +77,4 @@ object Context:
 
     override def toString: String = s"C[\n\tI:$selfID,\n\tE:$exports,\n\tS1:$localSensor,\n\tS2:$nbrSensors\n]"
 
-type SensorId = String
+    override def sense[T](name: Sensor): Option[T] = localSensor get name map (_.asInstanceOf[T])
