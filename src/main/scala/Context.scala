@@ -23,7 +23,7 @@ trait Context:
    * @param exp the export of the device
    * @return the new context
    */
-  def put(id: Int, exp: Export): Context
+  def putExport(id: Int, exp: Export): Context
 
   /**
    * Read the value corresponding to the given path from the export of a device.
@@ -33,7 +33,7 @@ trait Context:
    * @tparam A the type of the value
    * @return the value if it exists
    */
-  def readValue[A](id: Int, path: Path): Option[A]
+  def readExportValue[A](id: Int, path: Path): Option[A]
 
   /**
    * The values perceived by the local sensors of the device.
@@ -80,9 +80,9 @@ object Context:
                                  override val localSensors: Map[Sensor, Any],
                                  override val nbrSensors: Map[Sensor, Map[Int, Any]]) extends Context:
 
-    override def put(id: Int, exp: Export): Context = copy(exports = exports + (id -> exp))
+    override def putExport(id: Int, exp: Export): Context = copy(exports = exports + (id -> exp))
 
-    override def readValue[A](id: Int, path: Path): Option[A] = exports get id flatMap (_.get[A](path))
+    override def readExportValue[A](id: Int, path: Path): Option[A] = exports get id flatMap (_.get[A](path))
 
     override def toString: String = s"C[\n\tI:$selfID,\n\tE:$exports,\n\tS1:$localSensors,\n\tS2:$nbrSensors\n]"
 
