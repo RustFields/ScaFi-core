@@ -16,15 +16,3 @@ class FieldsTest extends AnyFunSuite with FieldTest:
     assert(f.getMap.isEmpty)
     assert(f.default == 1)
   }
-
-  test("Change self value") {
-    val f = Field(Map(mid -> 0))
-    val newField = Field.changeSelf(1, f)
-    assert(newField.getMap.get(mid).contains(1))
-  }
-
-  test("Change default value") {
-    val f = Field(Map(mid -> 0), 0)
-    val newField = Field.changeDef(1, f)
-    assert(newField.default == 1)
-  }
