@@ -1,5 +1,6 @@
 package field
 
+import cats.kernel.Monoid
 import functional.monad.Monads
 import functional.monoid.Monoids.*
 import lang.AuxiliaryConstructs
