@@ -1,7 +1,7 @@
 package field
 
-import field.{DeviceId, Fields}
+import field.Fields.DeviceId
 import lang.AuxiliaryConstructs
 
-trait FieldTest extends Fields with AuxiliaryConstructs:
+trait FieldTest extends AuxiliaryConstructs:
   override def mid: DeviceId = "d1"

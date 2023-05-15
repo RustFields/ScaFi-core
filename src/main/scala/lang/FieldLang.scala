@@ -1,8 +1,8 @@
 package lang
 
-import field.Fields
+import field.Fields.Field
 
-trait FieldLang extends Language with Fields with AuxiliaryConstructs:
+trait FieldLang extends Language:
   override type F[A] = Field[A]
 
   override def rep[A](init: => Field[A])(fun: Field[A] => Field[A]): Field[A]
