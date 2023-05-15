@@ -13,18 +13,12 @@ trait Fields:
    *
    * @tparam A the type of the field
    */
-  trait Field[A] extends GlobalField[A] with Defaultable[A]
+  case class Field[A](val getMap: Map[DeviceId, A], override val default: A) extends GlobalField[A] with Defaultable[A]
 
   object Field:
-    def apply[A](m: Map[DeviceId, A], d: A): Field[A] = new Field[A]:
-      def getMap: Map[DeviceId, A] = m
-
-      def default: A = d
-
-    def apply[A: Defaultable](m: Map[DeviceId, A]): Field[A] = new Field[A]:
-      def getMap: Map[DeviceId, A] = m
-
-      def default: A = summon[Defaultable[A]].default
+    def apply[A: Defaultable](m: Map[DeviceId, A]): Field[A] =
+      val d = summon[Defaultable[A]].default
+      Field(m, d)
 
     /**
      * Lifts a value to a field of values
@@ -32,10 +26,7 @@ trait Fields:
      * @tparam A the type of the value
      * @return the field with an empty map and the lifted value as a default
      */
-    def lift[A](a: A): Field[A] = new Field[A]:
-      def getMap: Map[DeviceId, A] = Map.empty
-
-      def default: A = a
+    def lift[A](a: A): Field[A] = Field(Map.empty, a)
 
     /**
      * Change the self value of the field
