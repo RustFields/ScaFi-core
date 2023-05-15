@@ -22,20 +22,23 @@ trait MonadicFields extends Monads with Fields with AuxiliaryConstructs:
 
 
 trait FieldOps extends MonadicFields:
-  given[A]: Conversion[A => A, Field[A => A]] with
-    override def apply(x: A => A): Field[A => A] = Field.lift(x)
-
-  def combineFields[A: Monoid](f1: Field[A], f2: Field[A]): Field[A] =
+  given[A, B]: Conversion[A => B, Field[A => B]] with
+    override def apply(x: A => B): Field[A => B] = Field.lift(x)
+    
+  def combineFields[A, B, C](f1: Field[A], f2: Field[B])(func: (A, B) => C): Field[C] =
     for
       v1 <- f1
       v2 <- f2
-    yield v1 |+| v2
+    yield func(v1, v2)
 
-  def combineFields[A](f1: Field[A], f2: Field[A => A]): Field[A] =
+  def applyFunctionField[A, B](f1: Field[A], f2: Field[A => B]): Field[B] =
     for
       v1 <- f1
       v2 <- f2
     yield v2(v1)
 
-  def applyToAll[A](f: Field[A], func: A => A): Field[A] =
-    combineFields(f, func)
+  def applyToAll[A, B](f: Field[A], func: A => B): Field[B] =
+    applyFunctionField(f, func)
+
+  def mappendFields[A: Monoid](f1: Field[A], f2: Field[A]): Field[A] =
+    combineFields(f1, f2)(_ |+| _)
