@@ -18,10 +18,10 @@ object Monoids:
     def combine(a1: String, a2: String): String = a1 + a2
     def empty: String = ""
 
-  given[A]: Monoid[List[A]] with
+  given [A]: Monoid[List[A]] with
     def combine(a1: List[A], a2: List[A]): List[A] = a1 ++ a2
     def empty: List[A] = Nil
 
-  given[A]: Monoid[Set[A]] with
+  given [A]: Monoid[Set[A]] with
     def combine(a1: Set[A], a2: Set[A]): Set[A] = a1 ++ a2
     def empty: Set[A] = Set.empty

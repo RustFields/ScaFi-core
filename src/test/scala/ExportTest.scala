@@ -1,4 +1,4 @@
-import Slot.{Rep, Nbr}
+import Slot.{Nbr, Rep}
 import org.scalatest.flatspec.AnyFlatSpec
 
 class ExportTest extends AnyFlatSpec:
