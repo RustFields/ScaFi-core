@@ -6,6 +6,7 @@ import org.scalatest.matchers.must.Matchers
 import org.scalatest.matchers.should.Matchers.shouldBe
 import functional.defaultable.DefaultableInstances.given
 import functional.monad.Monads.given
+import functional.monad.Monads.*
 import cats.implicits._
 import field.FieldTest
 
