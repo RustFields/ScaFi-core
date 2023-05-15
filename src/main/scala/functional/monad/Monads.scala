@@ -1,29 +1,51 @@
 package functional.monad
 
+
+import cats.Monad
+import cats.implicits.*
 import field.Fields
+import field.Fields.{DeviceId, Field}
 import lang.AuxiliaryConstructs
 
 import scala.annotation.targetName
 
-trait Monads:
+object Monads:
+  extension[F[_] : Monad, A] (fa: F[A])
+    @targetName("mapWith")
+    def >>[B](f: A => B): F[B] =
+      fa.map(f)
+
+    @targetName("flatMapWith")
+    def >>=[B](f: A => F[B]): F[B] =
+      fa.flatMap(f)
+      
   /**
-   * Monad Type class
-   *
-   * @tparam F the type of the monad
+   * Field Monad instance
    */
-  trait Monad[F[_]]:
-    def unit[A](a: => A): F[A]
+  given Monad[Field] with
+    override def pure[A](x: A): Field[A] = Field.lift(x)
 
-    extension[A] (fa: F[A])
-      def flatMap[B](f: A => F[B]): F[B]
+    override def flatMap[A, B](fa: Field[A])(f: A => Field[B]): Field[B] =
+      Field(fa.getMap.map { case (id, a) => id -> {
+        val b = f(a)
+        b.getMap.getOrElse(id, b.default)
+      }
+      }, f(fa.default).default)
 
-      def map[B](f: A => B): F[B] =
-        fa.flatMap(a => unit(f(a)))
+    override def tailRecM[A, B](a: A)(func: A => Field[Either[A, B]]): Field[B] =
+      val mapList = func(a).getMap.toList
 
-      @targetName("mapWith")
-      def >>[B](f: A => B): F[B] =
-        fa.map(f)
+      val newMap = mapList.foldLeft(Map.empty[DeviceId, B]) { case (acc, (deviceId, either)) =>
+        either match
+          case Left(a1) =>
+            val field = tailRecM(a1)(func)
+            acc.updated(deviceId, field.getMap.getOrElse(deviceId, field.default))
+          case Right(b) => acc.updated(deviceId, b)
+      }
 
-      @targetName("flatMapWith")
-      def >>=[B](f: A => F[B]): F[B] =
-        fa.flatMap(f)
+      val default = func(a).default match
+        case Left(a1) => tailRecM(a1)(func).default
+        case Right(b) => b
+
+      Field(newMap, default)
+  
