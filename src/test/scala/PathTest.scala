@@ -44,7 +44,9 @@ class PathTest extends AnyFlatSpec:
   it should "add a slot correctly using / method" in {
     val path = Path(Rep(0))
     val pathAfterAdd = path / FoldHood(1) / Branch(1, false)
-    assert(pathAfterAdd.path == List(Rep(0), FoldHood(1), Branch(1, false)).reverse)
+    assert(
+      pathAfterAdd.path == List(Rep(0), FoldHood(1), Branch(1, false)).reverse
+    )
   }
 
   it should "print correctly" in {

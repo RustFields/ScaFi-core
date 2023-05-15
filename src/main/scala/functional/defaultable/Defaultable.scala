@@ -1,9 +1,9 @@
 package functional.defaultable
 
-/**
- * Trait for types that have a default value.
- * @tparam A the Defaultable type
- */
+/** Trait for types that have a default value.
+  * @tparam A
+  *   the Defaultable type
+  */
 trait Defaultable[A]:
   def default: A
 
@@ -16,6 +16,6 @@ object DefaultableInstances:
 
   given Defaultable[Boolean] with
     def default = false
-    
-  given[A]: Defaultable[List[A]] with
+
+  given [A]: Defaultable[List[A]] with
     def default: List[A] = Nil

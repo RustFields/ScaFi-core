@@ -1,9 +1,9 @@
 package field
 
-import org.scalatest.funsuite.AnyFunSuite
 import field.FieldTest
 import field.Fields.Field
 import functional.defaultable.DefaultableInstances.given
+import org.scalatest.funsuite.AnyFunSuite
 
 class FieldsTest extends AnyFunSuite with FieldTest:
   test("Field creation") {
