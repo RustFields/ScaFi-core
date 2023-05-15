@@ -54,11 +54,11 @@ class FieldsOpsTest extends AnyFlatSpec with FieldTest with FieldOps:
   "Fields of monoids" should "be able to be combined together" in {
     val f1 = Field(Map(mid -> 1, "d2" ->2, "d3" -> 1, "d4" -> 2, "d5" -> 1))
     val g1 = Field(Map(mid -> 2, "d2" ->2, "d3" -> 2, "d4" -> 2, "d5" -> 2))
-    val h1 = combineFields(f1, g1)
+    val h1 = mappendFields(f1, g1)
     h1.getMap shouldBe Map(mid -> 3, "d2" ->4, "d3" -> 3, "d4" -> 4, "d5" -> 3)
 
     val f2 = Field(Map(mid -> List(1), "d2" -> List(2), "d3" -> List(1), "d4" -> List(2), "d5" -> List(1)))
     val g2 = Field(Map(mid -> List(2), "d2" -> List(2), "d3" -> List(2), "d4" -> List(2), "d5" -> List(2)))
-    val h2 = combineFields(f2, g2)
+    val h2 = mappendFields(f2, g2)
     h2.getMap shouldBe Map(mid -> List(1,2), "d2" -> List(2,2), "d3" -> List(1,2), "d4" -> List(2,2), "d5" -> List(1,2))
   }
