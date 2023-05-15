@@ -2,9 +2,12 @@ package functional.monoid
 
 import cats.kernel.Monoid
 
+import scala.annotation.targetName
+
 object Monoids:
 
   extension [A: Monoid](a1: A)
+    @targetName("combineWith")
     def |+|(a2: A): A = summon[Monoid[A]].combine(a1, a2)
 
   given Monoid[Int] with
