@@ -1,6 +1,6 @@
 package lang
 
-import field.DeviceId
+import field.Fields.DeviceId
 
 trait AuxiliaryConstructs:
   def mid: DeviceId
