@@ -45,6 +45,8 @@ trait Path:
 object Path:
   def apply(slots: Slot*): Path = PathImpl(slots.toList.reverse)
 
+  def empty(): Path = PathImpl(List())
+
   private case class PathImpl(path: List[Slot]) extends Path:
 
     override def push(slot: Slot): Path = PathImpl(slot :: path)
