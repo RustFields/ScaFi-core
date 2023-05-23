@@ -7,9 +7,9 @@ trait Export:
     * @tparam A
     *   the type of the value
     * @return
-    *   a new export with the value added
+    *   the value
     */
-  def put[A](path: Path, value: A): Export
+  def put[A](path: Path, value: A): A
 
   /** Get the value corresponding to the given path
     * @param path
@@ -48,14 +48,12 @@ object Export:
   def apply(exps: (Path, Any)*): Export = ExportImpl(exps.toMap)
   def apply(exps: Map[Path, Any]): Export = ExportImpl(exps)
 
-  private case class ExportImpl(
-      override val exports: Map[Path, Any] = Map.empty
-  ) extends Export:
-    override def put[A](path: Path, value: A): Export = ExportImpl(
-      exports + (path -> value)
-    )
+  private case class ExportImpl(private var map: Map[Path, Any] = Map.empty) extends Export:
+
+    override def exports: Map[Path, Any] = map
+
+    override def put[A](path: Path, value: A): A = { map += (path -> value); value }
 
     override def root[A](): A = get(Path()).get
 
-    override def get[A](path: Path): Option[A] =
-      exports.get(path).map(_.asInstanceOf[A])
+    override def get[A](path: Path): Option[A] = exports.get(path).map(_.asInstanceOf[A])

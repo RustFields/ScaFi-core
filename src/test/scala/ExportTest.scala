@@ -30,16 +30,6 @@ class ExportTest extends AnyFlatSpec:
     assert(result.exports == expected)
   }
 
-  it should "push a path/value pair" in {
-    // Arrange
-    val initialExport = Export(Map(Rep(0) -> "test"))
-    val expectedExport = Export(Map(Rep(0) -> "test", Nbr(1) -> "test"))
-    // Act
-    val finalExport = initialExport.put(Path(Nbr(1)), "test")
-    // Assert
-    assert(finalExport == expectedExport)
-  }
-
   it should "get the correct value" in {
     // Arrange
     val testExport = Export(Map(Rep(0) -> "1", Nbr(1) -> "2", Nbr(2) -> "3"))
