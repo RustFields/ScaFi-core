@@ -69,7 +69,7 @@ trait RoundVM:
 
   def localSense[A](name: Sensor): A = context
     .localSense[A](name)
-    .getOrElse(throw new SensorUnknownException(self, name))
+    .getOrElse(throw SensorUnknownException(self, name))
 
   def neighbourSense[A](name: Sensor): A = {
     RoundVM.ensure(neighbour.isDefined, "Neighbouring sensor must be queried in a nbr-dependent context.")
