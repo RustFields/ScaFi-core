@@ -1,3 +1,5 @@
+package vm
+
 trait Slot:
   /** This method is used to associate a value to a path.
     * @param value

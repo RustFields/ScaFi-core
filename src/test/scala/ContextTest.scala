@@ -1,6 +1,7 @@
-import Sensor.given
-import Slot.{Nbr, Rep}
+import vm.Sensor.given
+import vm.Slot.{Nbr, Rep}
 import org.scalatest.flatspec.AnyFlatSpec
+import vm.{Sensor, Export, Context}
 
 class ContextTest extends AnyFlatSpec:
 

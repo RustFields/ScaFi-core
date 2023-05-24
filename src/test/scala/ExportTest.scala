@@ -1,4 +1,5 @@
-import Slot.{Nbr, Rep}
+import vm.Slot.{Nbr, Rep}
+import vm.{Export, Path}
 import org.scalatest.flatspec.AnyFlatSpec
 
 class ExportTest extends AnyFlatSpec:

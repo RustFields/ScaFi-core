@@ -1,3 +1,5 @@
+package vm
+
 /**
  * This trait models the status of the virtual machine.
  */

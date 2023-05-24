@@ -1,5 +1,7 @@
-import Path.*
-import RoundVM.{NbrSensorUnknownException, OutOfDomainException, SensorUnknownException}
+package vm
+
+import vm.RoundVM.*
+import vm.{Path, Slot, Context, Export, VMStatus}
 
 trait RoundVM:
   /**

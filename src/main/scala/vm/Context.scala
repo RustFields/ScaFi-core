@@ -1,3 +1,5 @@
+package vm
+
 /** This trait models the context of a device.
   */
 trait Context:
@@ -78,18 +80,18 @@ trait Context:
 
 object Context:
   def apply(
-      selfID: Int,
-      exports: Iterable[(Int, Export)] = Map.empty,
-      localSensor: Map[Sensor, Any],
-      nbrSensors: Map[Sensor, Map[Int, Any]]
-  ): Context = ContextImpl(selfID, exports.toMap, localSensor, nbrSensors)
+             selfID: Int,
+             exports: Iterable[(Int, Export)] = Map.empty,
+             localSensor: Map[Sensor, Any],
+             nbrSensors: Map[Sensor, Map[Int, Any]]
+           ): Context = ContextImpl(selfID, exports.toMap, localSensor, nbrSensors)
 
   private case class ContextImpl(
-      override val selfID: Int,
-      override val exports: Map[Int, Export],
-      override val localSensors: Map[Sensor, Any],
-      override val nbrSensors: Map[Sensor, Map[Int, Any]]
-  ) extends Context:
+                                  override val selfID: Int,
+                                  override val exports: Map[Int, Export],
+                                  override val localSensors: Map[Sensor, Any],
+                                  override val nbrSensors: Map[Sensor, Map[Int, Any]]
+                                ) extends Context:
 
     override def putExport(id: Int, exp: Export): Context =
       copy(exports = exports + (id -> exp))
