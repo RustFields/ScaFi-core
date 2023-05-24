@@ -1,3 +1,5 @@
+package vm
+
 trait Export:
   /** Put a value into the export
     * @param path

@@ -1,4 +1,5 @@
-import Slot.{Branch, FoldHood, Nbr, Rep}
+import vm.Slot.{Branch, FoldHood, Nbr, Rep}
+import vm.Path
 import org.scalatest.flatspec.AnyFlatSpec
 
 class PathTest extends AnyFlatSpec:
