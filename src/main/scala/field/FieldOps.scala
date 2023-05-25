@@ -1,11 +1,12 @@
 package field
 
-import cats.implicits.*
+import cats.instances.all._
 import cats.kernel.Monoid
+import cats.syntax.all._
 import field.Fields.Field
 import field.Fields.Field.*
 import functional.monad.Monads.given
-import functional.monoid.Monoids
+
 
 trait FieldOps:
   def applyToAll[A, B](f: Field[A], func: A => B): Field[B] =
