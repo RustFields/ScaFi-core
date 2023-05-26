@@ -101,14 +101,14 @@ trait RoundVM:
    *
    * @return true if the device is contained in the neighbor list, false otherwise
    */
-  def onlyWhenFoldingOnSelf: Boolean = neighbour.contains(selfID)
+  def onlyWhenFoldingOnSelf: Boolean = neighbour.forall(_ == self)
 
   /**
    * Whether the device is contained in the neighbor list
    *
    * @return true if the device is contained in the neighbor list, false otherwise
    */
-  def unlessFoldingOnOthers: Boolean = neighbour.contains(selfID)
+  def unlessFoldingOnOthers: Boolean = neighbour.contains(self)
 
 object RoundVM:
   def ensure(b: => Boolean, s: String): Unit = if (!b) throw new Exception(s)
