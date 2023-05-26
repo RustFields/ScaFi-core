@@ -3,9 +3,10 @@ const publishCommands = `
 sed -i 's/version := .*/version := "\${nextRelease.version}"/g' build.sbt || exit 1
 git add -A || exit 2
 git commit -m "chore: [skip ci] update version in build.sbt" || exit 3
-git tag -a -f \${nextRelease.version} \${nextRelease.version} -F CHANGELOG.md  || exit 4
-git push --force origin \${nextRelease.version} || exit 5
-sbt assembly || exit 6
+git push --force origin || exit 4
+git tag -a -f \${nextRelease.version} \${nextRelease.version} -F CHANGELOG.md  || exit 5
+git push --force origin \${nextRelease.version} || exit 6
+sbt assembly || exit 7
 `
 const releaseBranches = ["main"]
 config.branches = releaseBranches
