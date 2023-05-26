@@ -22,23 +22,49 @@ jobs:
     name: Run tests via ${{ matrix.jdk-dist }} JDK v${{ matrix.java-version }}, on ${{ matrix.os }}
     steps:
       - name: Set ${{ matrix.jdk-dist }} JDK v${{ matrix.java-version }}
-        uses: actions/setup-java@v3
+        uses: olafurpg/setup-scala@v14
         with:
-          distribution: ${{ matrix.jdk-dist }}
           java-version: ${{ matrix.java-version }}
-
+          distribution: ${{ matrix.jdk-dist }}
       - name: Checkout code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
       - name: Run tests
         run: sbt test
+
+  test-release:
+    name: Test Release
+    needs:
+      - check
+    runs-on: ubuntu-latest
+    if: >-
+      !github.event.repository.fork
+      && (
+        github.event_name != 'pull_request'
+        || github.event.pull_request.head.repo.full_name == github.repository
+      )
+    concurrency:
+      group: test-release-${{ github.event.number || github.ref }}
+      cancel-in-progress: true
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - name: Setup Scala
+        uses: olafurpg/setup-scala@v14
+        with:
+          java-version: '17'
+      - name: Sbt check publish artifacts
+        run: sbt +publishLocal
 
   release:
     if: github.event_name == 'push'
     needs:
       - check
+      - test-release
     runs-on: ubuntu-latest
     concurrency:
       group: release
@@ -50,24 +76,23 @@ jobs:
           submodules: recursive
           fetch-depth: 0
           token: ${{ secrets.GH_ACCESS_TOKEN }}
-      - name: Setup Java
-        uses: actions/setup-java@v3
+      - name: Setup Scala
+        uses: olafurpg/setup-scala@v14
         with:
           java-version: '17'
-          distribution: adopt
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: echo "todo run Semantic Release"
-#        run: |
-#          npm install
-#          npx semantic-release
+        run: |
+          npm install
+          npx semantic-release
 
   success:
     runs-on: ubuntu-latest
     needs:
       - check
+      - test-release
       - release
     if: >-
       always() && (
