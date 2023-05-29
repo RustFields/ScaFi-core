@@ -4,13 +4,5 @@ import field.Fields.Field
 import vm.RoundVM
 import vm.RoundVM.*
 
-trait FieldLang extends Language:
+trait FieldLang extends LangImpl:
   override type F[A] = Field[A]
-
-  override def rep[A](init: => Field[A])(fun: Field[A] => Field[A]): Field[A]
-
-  override def nbr[A](expr: => Field[A]): Field[A]
-
-trait FieldLangImpl extends FieldLang with AuxiliaryConstructs:
-  val vm: RoundVM
-  override def rep[A](init: => Field[A])(fun: Field[A] => Field[A]): Field[A] = ???
