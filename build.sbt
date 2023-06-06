@@ -7,6 +7,5 @@ lazy val root = project
   .settings(
     name := "ScaFi-core",
     assembly / test := (Test / test).value,
-    libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.16" % "test",
-    libraryDependencies += "org.typelevel" %% "cats-core" % "2.9.0"
+    libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.16" % "test"
   )
