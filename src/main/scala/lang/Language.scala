@@ -11,7 +11,7 @@ trait Language:
 
 
 trait LangImpl extends Language:
-  val vm: RoundVM
+  def vm: RoundVM
 
   override def rep[A](init: => F[A])(fun: F[A] => F[A]): F[A] =
     vm.nest(Rep(vm.index))(write = vm.unlessFoldingOnOthers) {
