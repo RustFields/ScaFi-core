@@ -1,6 +1,5 @@
 package lang
 
-import field.Fields.DeviceId
 import vm.RoundVM
 import vm.Slot.{Nbr, Rep}
 
