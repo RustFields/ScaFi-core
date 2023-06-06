@@ -124,3 +124,9 @@ object RoundVM:
   final case class NbrSensorUnknownException(selfId: Int, name: Sensor, nbr: Int) extends Exception() {
     override def toString: String = s"NbrSensorUnknownException: $selfId , $name, $nbr"
   }
+  
+  trait VMFactory:
+    def createVM(c: Context): RoundVM
+
+  trait VMFactoryProvider extends VMFactory:
+    override def createVM(c: Context): RoundVM = ???
