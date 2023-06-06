@@ -1,3 +1,39 @@
+## [1.1.0](https://github.com/RustFields/ScaFi-core/compare/1.0.0...1.1.0) (2023-06-06)
+
+
+### Features
+
+* add field calculus execution ([da15f26](https://github.com/RustFields/ScaFi-core/commit/da15f2695175968f257c0aa9c6b49b6eb776e968))
+* add first base-constructs implementation ([f9e12d6](https://github.com/RustFields/ScaFi-core/commit/f9e12d65039cae79a1abd547802faeb5ce4c3819))
+* create mid inside lang constructs ([098def0](https://github.com/RustFields/ScaFi-core/commit/098def06f359fa820358bd2024c743cbf8016dea))
+* create VMFactory ([ad4e856](https://github.com/RustFields/ScaFi-core/commit/ad4e8564fd68a96dc6e64ee21f87fb6502e13627))
+
+
+### Bug Fixes
+
+* change functions implementations ([c4aed5f](https://github.com/RustFields/ScaFi-core/commit/c4aed5ffbe34932df155ab6d0e356c67086e3d13))
+* make vm a def instead of val to allow mutability ([12f6a36](https://github.com/RustFields/ScaFi-core/commit/12f6a36c9d019750657b58fea00d43356cca8bbe))
+* moved AuxiliaryConstructs to test package ([818777f](https://github.com/RustFields/ScaFi-core/commit/818777f275592475126983c9806072850e0c6cde))
+
+
+### Build and continuous integration
+
+* now Semantic Release changes version in build.sbt correctly ([a4738ba](https://github.com/RustFields/ScaFi-core/commit/a4738ba5a42925cf493c407b5c68bf4cb1a084e9))
+* remove unused parameter in workflow ([6de9376](https://github.com/RustFields/ScaFi-core/commit/6de9376587d38911033a18e07427f30b658960a1))
+
+
+### Dependency updates
+
+* **deps:** update dependency sbt/sbt to v1.9.0 ([9b5a3f9](https://github.com/RustFields/ScaFi-core/commit/9b5a3f9254e3375c4a20e3fc54be8d8db52a8926))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.30 ([3b2b90c](https://github.com/RustFields/ScaFi-core/commit/3b2b90c9912d8e5982fd6d0d944de4794ec7d515))
+
+
+### Refactoring
+
+* move vm-related stuff into a separate package ([bf9ad64](https://github.com/RustFields/ScaFi-core/commit/bf9ad648d2d948bdf8caf70bea20097724a34691))
+* moved AuxiliaryConstructs to test package ([efb1e74](https://github.com/RustFields/ScaFi-core/commit/efb1e740d014683a02c92f06b07ed11c1f5acd86))
+* remove useless files ([8723fec](https://github.com/RustFields/ScaFi-core/commit/8723feca2f4fd55fb54dbefbea36ebc31336e270))
+
 ## 1.0.0 (2023-05-26)
 
 
