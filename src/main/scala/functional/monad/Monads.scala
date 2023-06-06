@@ -4,7 +4,6 @@ import cats.Monad
 import cats.implicits.*
 import field.Fields
 import field.Fields.{DeviceId, Field}
-import lang.AuxiliaryConstructs
 
 import scala.annotation.targetName
 
