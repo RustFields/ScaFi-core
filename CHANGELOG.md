@@ -1,3 +1,25 @@
+## [2.0.0](https://github.com/RustFields/ScaFi-core/compare/1.1.0...2.0.0) (2023-06-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove useless files
+
+### Bug Fixes
+
+* fix import ([11bed64](https://github.com/RustFields/ScaFi-core/commit/11bed64083c302e4a0da37310188448d31b82204))
+* remove useless files ([fc7078b](https://github.com/RustFields/ScaFi-core/commit/fc7078bd2f4726457817611b3ee436199dfa9dbf))
+
+
+### General maintenance
+
+* [skip ci] update version in build.sbt ([0222b71](https://github.com/RustFields/ScaFi-core/commit/0222b71119d1de3d37f582812919171acf96a4e3))
+
+
+### Dependency updates
+
+* **deps:** remove dependency ([6ef114e](https://github.com/RustFields/ScaFi-core/commit/6ef114ed5e04b4ca1eaa58e820144189c3f54889))
+
 ## [1.1.0](https://github.com/RustFields/ScaFi-core/compare/1.0.0...1.1.0) (2023-06-06)
 
 
