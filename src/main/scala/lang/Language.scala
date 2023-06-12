@@ -1,7 +1,7 @@
 package lang
 
-import vm.RoundVM
-import vm.Slot.{Nbr, Rep}
+import vm.{RoundVM, Sensor}
+import vm.Slot.{Branch, FoldHood, Nbr, Rep}
 
 trait Language:
   type F[A]
@@ -10,6 +10,9 @@ trait Language:
   def nbr[A](expr: => F[A]): F[A]
 
   def mid(): Int
+
+  def foldhood[A](init: => A)(aggr: (A, A) => A)(expr: => A): A
+
 
 
 trait LangImpl extends Language:
@@ -31,3 +34,11 @@ trait LangImpl extends Language:
     }
 
   override def mid(): Int = vm.self
+
+  override def foldhood[A](init: => A)(aggr: (A, A) => A)(expr: => A): A =
+    vm.nest(FoldHood(vm.index))(write = true){
+      val nbrField: List[A] = vm
+        .alignedNeighbours()
+        .map(id => vm.foldedEval(expr)(id).getOrElse(vm.locally(init)))
+      vm.isolate(nbrField.fold(vm.locally(init))((x,y) => aggr(x,y)))
+    }
