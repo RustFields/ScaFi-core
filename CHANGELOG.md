@@ -1,3 +1,23 @@
+## [2.1.0](https://github.com/RustFields/ScaFi-core/compare/2.0.0...2.1.0) (2023-06-12)
+
+
+### Features
+
+* add branch construct ([4277933](https://github.com/RustFields/ScaFi-core/commit/4277933e908d97ff07bf336644e24decf196d015))
+* add foldhood construct ([cdc3409](https://github.com/RustFields/ScaFi-core/commit/cdc3409be044bef1a2c8a8fd812a4f5bdf31dc5f))
+* add nbrVar construct ([f0c5407](https://github.com/RustFields/ScaFi-core/commit/f0c54073d543faa8a0afaf1740ab7ebd0c33991c))
+* add sense construct ([157dc92](https://github.com/RustFields/ScaFi-core/commit/157dc9253a88d23bbd9031619dbc68316951bfde))
+
+
+### General maintenance
+
+* [skip ci] update version in build.sbt ([8472509](https://github.com/RustFields/ScaFi-core/commit/8472509054cb500c636d44daa386b15f2d97c528))
+
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.32 ([bf190a6](https://github.com/RustFields/ScaFi-core/commit/bf190a6543771e65198bf6d38076ecdae81ffabc))
+
 ## [2.0.0](https://github.com/RustFields/ScaFi-core/compare/1.1.0...2.0.0) (2023-06-06)
 
 
