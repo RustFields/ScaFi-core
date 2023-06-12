@@ -1,3 +1,20 @@
+## [2.2.0](https://github.com/RustFields/ScaFi-core/compare/2.1.0...2.2.0) (2023-06-12)
+
+
+### Features
+
+* implement builtins ([94ff2cc](https://github.com/RustFields/ScaFi-core/commit/94ff2cc8c0ffbe8ffc8792ac0ab6083ce3c3768a))
+
+
+### General maintenance
+
+* [skip ci] update version in build.sbt ([78672b8](https://github.com/RustFields/ScaFi-core/commit/78672b8199d5719517789ab5299109391949f52a))
+
+
+### Refactoring
+
+* remove type definition ([24199b6](https://github.com/RustFields/ScaFi-core/commit/24199b6374b7bed4d8cf19a09e678d195d7ff5f9))
+
 ## [2.1.0](https://github.com/RustFields/ScaFi-core/compare/2.0.0...2.1.0) (2023-06-12)
 
 
