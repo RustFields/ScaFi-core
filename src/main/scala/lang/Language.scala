@@ -15,6 +15,8 @@ trait Language:
 
   def branch[A](cond: => Boolean)(thn: => A)(els: => A): A
 
+  def sense[A](name: Sensor): A
+
 
 trait LangImpl extends Language:
   def vm: RoundVM
@@ -52,3 +54,5 @@ trait LangImpl extends Language:
         case _ => if (tag) vm.locally(thn) else vm.locally(els)
       }
     }
+
+  override def sense[A](name: Sensor): A = vm.localSense(name)
