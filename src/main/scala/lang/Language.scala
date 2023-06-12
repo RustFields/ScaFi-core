@@ -13,6 +13,7 @@ trait Language:
 
   def foldhood[A](init: => A)(aggr: (A, A) => A)(expr: => A): A
 
+  def branch[A](cond: => Boolean)(thn: => A)(els: => A): A
 
 
 trait LangImpl extends Language:
@@ -41,4 +42,13 @@ trait LangImpl extends Language:
         .alignedNeighbours()
         .map(id => vm.foldedEval(expr)(id).getOrElse(vm.locally(init)))
       vm.isolate(nbrField.fold(vm.locally(init))((x,y) => aggr(x,y)))
+    }
+
+  override def branch[A](cond: => Boolean)(thn: => A)(els: => A): A =
+    val tag: Boolean = vm.locally(cond)
+    vm.nest(Branch(vm.index, tag))(write = vm.unlessFoldingOnOthers) {
+      vm.neighbour match {
+        case Some(nbr) if nbr != vm.self => vm.neighbourVal
+        case _ => if (tag) vm.locally(thn) else vm.locally(els)
+      }
     }
