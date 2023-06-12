@@ -17,6 +17,8 @@ trait Language:
 
   def sense[A](name: Sensor): A
 
+  def nbrVar[A](name: Sensor): A
+
 
 trait LangImpl extends Language:
   def vm: RoundVM
@@ -56,3 +58,5 @@ trait LangImpl extends Language:
     }
 
   override def sense[A](name: Sensor): A = vm.localSense(name)
+
+  override def nbrVar[A](name: Sensor): A = vm.neighbourSense(name)
