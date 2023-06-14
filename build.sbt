@@ -1,4 +1,4 @@
-ThisBuild / version := "2.2.0"
+ThisBuild / version := "2.2.1"
 ThisBuild / organization := "io.github.rustfields"
 ThisBuild / scalaVersion := "3.3.0"
 
