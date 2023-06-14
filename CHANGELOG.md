@@ -1,3 +1,20 @@
+## [2.2.1](https://github.com/RustFields/ScaFi-core/compare/2.2.0...2.2.1) (2023-06-14)
+
+
+### General maintenance
+
+* [skip ci] update version in build.sbt ([c54d371](https://github.com/RustFields/ScaFi-core/commit/c54d3712fc41e54434de028c1c36e7e6babd8cb3))
+
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.35 ([adef3d0](https://github.com/RustFields/ScaFi-core/commit/adef3d0d85d45a545b1f0451d144480047115fff))
+
+
+### Documentation
+
+* add language's doc ([7d6662f](https://github.com/RustFields/ScaFi-core/commit/7d6662f95ec11a90d52e135b4cedc6d58c5ea54f))
+
 ## [2.2.0](https://github.com/RustFields/ScaFi-core/compare/2.1.0...2.2.0) (2023-06-12)
 
 
