@@ -14,6 +14,7 @@ const releaseBranches = ["main"]
 config.branches = releaseBranches
 config.plugins.push(
     ["@semantic-release/exec", {
+        "prepareCmd": prepareCommands,
         "publishCmd": publishCommands,
     }],
     ["@semantic-release/github", {
