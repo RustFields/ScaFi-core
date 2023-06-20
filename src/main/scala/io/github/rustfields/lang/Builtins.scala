@@ -1,6 +1,6 @@
-package lang
+package io.github.rustfields.lang
 
-import lang.Builtins.{Bounded, PartialOrderingWithGLB}
+import Builtins.{Bounded, PartialOrderingWithGLB}
 
 /**
  * This trait defines a component that extends LanguageStructure and requires to be "attached" to Core

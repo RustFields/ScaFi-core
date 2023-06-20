@@ -1,4 +1,4 @@
-package vm
+package io.github.rustfields.vm
 
 /** A path is a list of slots that represent a path in a tree. The path works
   * like a stack.

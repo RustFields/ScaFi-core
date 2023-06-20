@@ -1,4 +1,4 @@
-package vm
+package io.github.rustfields.vm
 
 /** This trait models the context of a device.
   */

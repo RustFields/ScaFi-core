@@ -1,7 +1,6 @@
-package vm
+package io.github.rustfields.vm
 
-import vm.RoundVM.*
-import vm.{Path, Slot, Context, Export, VMStatus}
+import RoundVM.*
 
 trait RoundVM:
   /**

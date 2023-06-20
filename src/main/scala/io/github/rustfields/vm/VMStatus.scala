@@ -1,4 +1,4 @@
-package vm
+package io.github.rustfields.vm
 
 /**
  * This trait models the status of the virtual machine.
