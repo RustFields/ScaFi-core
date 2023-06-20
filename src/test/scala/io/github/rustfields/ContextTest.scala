@@ -1,7 +1,9 @@
-import vm.Sensor.given
-import vm.Slot.{Nbr, Rep}
+package io.github.rustfields
+
+import io.github.rustfields.vm.Sensor.given
+import io.github.rustfields.vm.Slot.{Nbr, Rep}
+import io.github.rustfields.vm.{Context, Export, Sensor}
 import org.scalatest.flatspec.AnyFlatSpec
-import vm.{Sensor, Export, Context}
 
 class ContextTest extends AnyFlatSpec:
 

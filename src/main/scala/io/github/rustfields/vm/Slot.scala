@@ -1,4 +1,4 @@
-package vm
+package io.github.rustfields.vm
 
 trait Slot:
   /** This method is used to associate a value to a path.

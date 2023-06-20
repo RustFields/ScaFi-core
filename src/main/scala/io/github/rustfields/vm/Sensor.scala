@@ -1,4 +1,5 @@
-package vm
+package io.github.rustfields.vm
+
 trait Sensor
 
 object Sensor:

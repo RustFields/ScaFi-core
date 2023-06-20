@@ -1,7 +1,7 @@
-package lang
+package io.github.rustfields.lang
 
-import vm.RoundVM.{VMFactory, VMFactoryProvider}
-import vm.{Context, Export, RoundVM}
+import io.github.rustfields.vm.{Context, Export, RoundVM}
+import io.github.rustfields.vm.RoundVM.{VMFactory, VMFactoryProvider}
 
 trait FieldCalculusExecution extends (Context => Export) with LangImpl:
   factory: VMFactory =>
