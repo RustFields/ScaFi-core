@@ -1,4 +1,4 @@
-package vm
+package io.github.rustfields.vm
 
 trait Export:
   /** Put a value into the export

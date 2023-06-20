@@ -1,5 +1,7 @@
-import vm.Slot.{Nbr, Rep}
-import vm.Path
+package io.github.rustfields
+
+import io.github.rustfields.vm.Path
+import io.github.rustfields.vm.Slot.{Nbr, Rep}
 import org.scalatest.flatspec.AnyFlatSpec
 
 class SlotTest extends AnyFlatSpec:

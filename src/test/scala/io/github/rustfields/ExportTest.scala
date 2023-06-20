@@ -1,5 +1,7 @@
-import vm.Slot.{Nbr, Rep}
-import vm.{Export, Path}
+package io.github.rustfields
+
+import io.github.rustfields.vm.Slot.{Nbr, Rep}
+import io.github.rustfields.vm.{Export, Path}
 import org.scalatest.flatspec.AnyFlatSpec
 
 class ExportTest extends AnyFlatSpec:

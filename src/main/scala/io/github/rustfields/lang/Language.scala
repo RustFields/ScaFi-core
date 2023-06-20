@@ -1,7 +1,7 @@
-package lang
+package io.github.rustfields.lang
 
-import vm.{RoundVM, Sensor}
-import vm.Slot.{Branch, FoldHood, Nbr, Rep}
+import io.github.rustfields.vm.Slot.*
+import io.github.rustfields.vm.{RoundVM, Sensor}
 
 trait Language:
   /**
