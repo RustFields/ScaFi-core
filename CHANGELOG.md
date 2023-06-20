@@ -1,3 +1,30 @@
+## [3.0.0](https://github.com/RustFields/ScaFi-core/compare/2.2.1...3.0.0) (2023-06-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* add organization packages
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.37 ([3b209d8](https://github.com/RustFields/ScaFi-core/commit/3b209d82c55a33a61fe81e9eb35833b2204b19bf))
+
+
+### Build and continuous integration
+
+* add prepareCommands in Semantic Release configuration ([49d388a](https://github.com/RustFields/ScaFi-core/commit/49d388a637a58152103cf46f85a2c5add89b0001))
+* fix Semantic Release configuration ([7295df3](https://github.com/RustFields/ScaFi-core/commit/7295df3d6f1e04b3c0fdb4c12894cfb92ede40b3))
+* fix Semantic Release configuration ([a5319b6](https://github.com/RustFields/ScaFi-core/commit/a5319b66592c56db1039fd1539a2bd41ccc7de72))
+* **Mergify:** configuration update ([5280e40](https://github.com/RustFields/ScaFi-core/commit/5280e40f66f27c7a54a953041c8ce47bc24d75cc))
+* publish all jars in Semantic Release ([819fbb5](https://github.com/RustFields/ScaFi-core/commit/819fbb57d603fbd5d6d084ea5787b885cf08fd03))
+
+
+### General maintenance
+
+* [skip ci] update version in build.sbt ([8302539](https://github.com/RustFields/ScaFi-core/commit/8302539202ad5719c90865e1d17afe684989446c))
+* add empty line ([82c6486](https://github.com/RustFields/ScaFi-core/commit/82c6486754e3eed879449e184aca1fa9f29e2efc))
+* add organization packages ([17958d5](https://github.com/RustFields/ScaFi-core/commit/17958d5ecd1bf2fd00bc655f54eeaf9069275b05))
+
 ## [2.2.1](https://github.com/RustFields/ScaFi-core/compare/2.2.0...2.2.1) (2023-06-14)
 
 
