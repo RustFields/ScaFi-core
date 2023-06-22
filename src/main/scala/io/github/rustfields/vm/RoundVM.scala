@@ -2,6 +2,8 @@ package io.github.rustfields.vm
 
 import RoundVM.*
 
+import scala.util.control.Exception.handling
+
 trait RoundVM:
   /**
    * The context of the current round
@@ -51,9 +53,6 @@ trait RoundVM:
    * @return the index
    */
   def index: Int = status.index
-
-
-  def exportStack: List[Export]
 
   def self: Int =
     context.selfID
@@ -123,7 +122,65 @@ object RoundVM:
   final case class NbrSensorUnknownException(selfId: Int, name: Sensor, nbr: Int) extends Exception() {
     override def toString: String = s"NbrSensorUnknownException: $selfId , $name, $nbr"
   }
-  
+
+  class RoundVMImpl(val context: Context) extends RoundVM:
+    var exports: List[Export] = List(Export.empty())
+    var status: VMStatus = VMStatus()
+    var isolated = false // When true, neighbours are scoped out
+
+    override def foldedEval[A](expr: => A)(id: Int): Option[A] =
+      handling(classOf[OutOfDomainException]) by (_ => None) apply {
+        try
+          status = status.push()
+          status = status.foldInto(Some(id))
+          Some(expr)
+        finally status = status.pop()
+      }
+
+    override def nest[A](slot: Slot)(write: Boolean, inc: Boolean = true)(expr: => A): A =
+      try
+        status = status.push().nest(slot) // prepare nested call
+        if write then
+          exportData.get(status.path).getOrElse(exportData.put(status.path, expr))
+        else
+          expr
+      finally status = if (inc) status.pop().incIndex() else status.pop()
+
+    override def locally[A](a: => A): A =
+      val currentNeighbour = neighbour
+      try
+        status = status.foldOut()
+        a
+      finally status = status.foldInto(currentNeighbour)
+
+    override def alignedNeighbours(): List[Int] =
+      if isolated then
+        List()
+      else
+        self ::
+          context
+            .exports
+            .filter(_._1 != self)
+            .filter(p => status.path.isRoot || p._2.get(status.path).isDefined)
+            .map(_._1)
+            .toList
+
+    override def isolate[A](expr: => A): A =
+      val wasIsolated = this.isolated
+      try
+        this.isolated = true
+        expr
+      finally this.isolated = wasIsolated
+
+    override def newExportStack: Any = exports = Export.empty() :: exports
+
+    override def discardExport: Any = exports = exports.tail
+
+    override def mergeExport: Any =
+      val toMerge = exportData
+      exports = exports.tail
+      toMerge.exports.foreach(tp => exportData.put(tp._1, tp._2))
+
   trait VMFactory:
     def createVM(c: Context): RoundVM
 
