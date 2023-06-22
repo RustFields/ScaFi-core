@@ -182,5 +182,5 @@ object RoundVM:
   trait VMFactory:
     def createVM(c: Context): RoundVM
 
-  trait VMFactoryProvider extends VMFactory:
-    override def createVM(c: Context): RoundVM = ???
+  trait StandardVMFactory extends VMFactory:
+    override def createVM(c: Context): RoundVM = RoundVM(c)
