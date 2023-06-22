@@ -1,3 +1,19 @@
+## [3.1.0](https://github.com/RustFields/ScaFi-core/compare/3.0.0...3.1.0) (2023-06-22)
+
+
+### Features
+
+* add apply function to round vm object ([619eee7](https://github.com/RustFields/ScaFi-core/commit/619eee7135ad512c12d75a154238f071148f2c7d))
+* add round vm implementation ([9dce993](https://github.com/RustFields/ScaFi-core/commit/9dce993fae1fce029e3ef13720f702bb9674552b))
+* implement a standard vm factory ([be4b6a3](https://github.com/RustFields/ScaFi-core/commit/be4b6a3c92b0af2b4a3103c6eb9294917656ed0b))
+* use standard vm factory ([5a89833](https://github.com/RustFields/ScaFi-core/commit/5a898335f7e0b697e465b9b97befa28dc94852ae))
+
+
+### Refactoring
+
+* move vmfactory traits outside RoundVM object ([3e74307](https://github.com/RustFields/ScaFi-core/commit/3e74307a8c12a141f7cb7188054a0221d266ad7f))
+* use significant indentation ([daa6d4a](https://github.com/RustFields/ScaFi-core/commit/daa6d4a2db93d2a5d2be3efdcba730b3e43529ee))
+
 ## [3.0.0](https://github.com/RustFields/ScaFi-core/compare/2.2.1...3.0.0) (2023-06-20)
 
 
