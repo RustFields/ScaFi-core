@@ -1,10 +1,10 @@
 package io.github.rustfields.lang
 
 import io.github.rustfields.vm.{Context, Export, RoundVM}
-import io.github.rustfields.vm.RoundVM.{VMFactory, VMFactoryProvider}
+import io.github.rustfields.vm.RoundVM.{StandardVMFactory, VMFactory}
 
 trait FieldCalculusExecution extends (Context => Export) with LangImpl:
-  factory: VMFactory =>
+  self: VMFactory =>
 
   type MainResult
 
@@ -16,14 +16,16 @@ trait FieldCalculusExecution extends (Context => Export) with LangImpl:
     round(c, main())
 
   final def round(c: Context, e: => Any = main()): Export =
-    vm = factory.createVM(c)
+    vm = createVM(c)
     val result = e
     vm.registerRoot(result)
     vm.exportData
 
-trait FieldCalculusInterpreter extends FieldCalculusExecution with FieldCalculusSyntax with VMFactoryProvider:
+trait FieldCalculusInterpreter extends FieldCalculusExecution with FieldCalculusSyntax with StandardVMFactory:
   type MainResult = Any
   final def main(): Any = ()
 
-trait AggregateProgram extends FieldCalculusExecution with FieldCalculusSyntax:
-  factory: VMFactory =>
+trait BaseProgram extends FieldCalculusExecution with FieldCalculusSyntax:
+    factory: VMFactory =>
+
+trait AggregateProgram extends BaseProgram with StandardVMFactory
