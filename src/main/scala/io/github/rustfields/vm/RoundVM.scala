@@ -112,17 +112,14 @@ object RoundVM:
   def apply(c: Context): RoundVM = new RoundVMImpl(c)
   def ensure(b: => Boolean, s: String): Unit = if (!b) throw new Exception(s)
 
-  final case class OutOfDomainException(selfId: Int, nbr: Int, path: Path) extends Exception() {
+  final case class OutOfDomainException(selfId: Int, nbr: Int, path: Path) extends Exception:
     override def toString: String = s"OutOfDomainException: $selfId , $nbr, $path"
-  }
 
-  final case class SensorUnknownException(selfId: Int, name: Sensor) extends Exception() {
+  final case class SensorUnknownException(selfId: Int, name: Sensor) extends Exception:
     override def toString: String = s"SensorUnknownException: $selfId , $name"
-  }
 
-  final case class NbrSensorUnknownException(selfId: Int, name: Sensor, nbr: Int) extends Exception() {
+  final case class NbrSensorUnknownException(selfId: Int, name: Sensor, nbr: Int) extends Exception:
     override def toString: String = s"NbrSensorUnknownException: $selfId , $name, $nbr"
-  }
 
   class RoundVMImpl(val context: Context) extends RoundVM:
     var exports: List[Export] = List(Export.empty())
