@@ -109,6 +109,7 @@ trait RoundVM:
   def unlessFoldingOnOthers: Boolean = neighbour.contains(self)
 
 object RoundVM:
+  def apply(c: Context): RoundVM = new RoundVMImpl(c)
   def ensure(b: => Boolean, s: String): Unit = if (!b) throw new Exception(s)
 
   final case class OutOfDomainException(selfId: Int, nbr: Int, path: Path) extends Exception() {
