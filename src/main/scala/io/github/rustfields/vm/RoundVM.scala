@@ -179,8 +179,8 @@ object RoundVM:
       exports = exports.tail
       toMerge.exports.foreach(tp => exportData.put(tp._1, tp._2))
 
-  trait VMFactory:
-    def createVM(c: Context): RoundVM
+trait VMFactory:
+  def createVM(c: Context): RoundVM
 
-  trait StandardVMFactory extends VMFactory:
-    override def createVM(c: Context): RoundVM = RoundVM(c)
+trait StandardVMFactory extends VMFactory:
+  override def createVM(c: Context): RoundVM = RoundVM(c)
