@@ -41,13 +41,6 @@ trait RoundVM:
    */
   def index: Int = status.index
 
-
-  /**
-   * The list of exports on the stack
-   * @return a list of exports
-   */
-  def exportStack: List[Export]
-
   /**
    * The ID of the context device.
    * @return the ID
