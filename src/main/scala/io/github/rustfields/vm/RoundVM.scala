@@ -7,63 +7,97 @@ import scala.util.control.Exception.handling
 trait RoundVM:
   /**
    * The context of the current round
-   *
    * @return the context
    */
   def context: Context
 
   /**
    * The status of the current round
-   *
    * @return the status
    */
   def status: VMStatus
 
   /**
-   * TODO
-   *
-   * @return
+   * The exports of the context.
+   * @return the list of the current exports.
    */
   def exports: List[Export]
 
   /**
    * The first export of the stack
-   *
    * @return the export
    */
   def exportData: Export = exports.head
 
   /**
    * If the computation is folding on a neighbor, get the id of the neighbor
-   *
    * @return the id
    */
   def neighbour: Option[Int] = status.neighbour
 
   /**
    * The index of the current computation
-   *
    * @return the index
    */
   def index: Int = status.index
 
+
+  /**
+   * The list of exports on the stack
+   * @return a list of exports
+   */
+  def exportStack: List[Export]
+
+  /**
+   * The ID of the context device.
+   * @return the ID
+   */
   def self: Int =
     context.selfID
 
+  /**
+   * Register a value in the root of the export stack
+   * @param v the value to register
+   */
   def registerRoot(v: Any): Unit =
     exportData.put(Path.empty(), v)
 
+  /**
+   * Obtain the value corresponding to the actual path from the context export.
+   * @tparam A
+   * @return the value if it exists
+   */
   def previousRoundVal[A]: Option[A] =
     context.readExportValue[A](self, status.path)
 
+  /**
+   * Obtain the value corresponding to the actual path from the neighbour.
+   * or throw an exception if the neighbour is unknown.
+   * @tparam A
+   * @return
+   */
   def neighbourVal[A]: A = context
     .readExportValue[A](neighbour.get, status.path)
     .getOrElse(throw OutOfDomainException(context.selfID, neighbour.get, status.path))
 
+  /**
+   * Get the value of a given sensor from the actual context.
+   * Or throw an exception if the sensor is unknown.
+   * @param name the name of the sensor
+   * @tparam A
+   * @return the value if it exists
+   */
   def localSense[A](name: Sensor): A = context
     .localSense[A](name)
     .getOrElse(throw SensorUnknownException(self, name))
 
+  /**
+   * Get the value of a given sensor from the neighbour.
+   * Or throw an exception if the sensor is unknown.
+   * @param name the name of the sensor
+   * @tparam A
+   * @return the value if it exists
+   */
   def neighbourSense[A](name: Sensor): A = {
     RoundVM.ensure(neighbour.isDefined, "Neighbouring sensor must be queried in a nbr-dependent context.")
     context
@@ -71,14 +105,46 @@ trait RoundVM:
       .getOrElse(throw NbrSensorUnknownException(self, name, neighbour.get))
   }
 
+  /**
+   * TODO
+   * @param expr
+   * @param id
+   * @tparam A
+   * @return
+   */
   def foldedEval[A](expr: => A)(id: Int): Option[A]
 
+  /**
+   * TODO
+   * @param slot the slot to use
+   * @param write whether to write the result in the export
+   * @param inc whether to increment the index
+   * @param expr the expression to evaluate
+   * @tparam A
+   * @return the result of the expression
+   */
   def nest[A](slot: Slot)(write: Boolean, inc: Boolean = true)(expr: => A): A
 
+  /**
+   * TODO
+   * @param a the expression to evaluate
+   * @tparam A
+   * @return the result of the expression
+   */
   def locally[A](a: => A): A
 
+  /**
+   * The neighbours aligned to the actual context.
+   * @return the list of IDs of the neighbours
+   */
   def alignedNeighbours(): List[Int]
 
+  /**
+   * Isolate the evaluation of the expression from the current context
+   * @param expr the expression to evaluate
+   * @tparam A
+   * @return the result of the expression
+   */
   def isolate[A](expr: => A): A
 
   def newExportStack: Any
@@ -89,14 +155,12 @@ trait RoundVM:
 
   /**
    * Whether the device is contained in the neighbor list
-   *
    * @return true if the device is contained in the neighbor list, false otherwise
    */
   def onlyWhenFoldingOnSelf: Boolean = neighbour.forall(_ == self)
 
   /**
    * Whether the device is contained in the neighbor list
-   *
    * @return true if the device is contained in the neighbor list, false otherwise
    */
   def unlessFoldingOnOthers: Boolean = neighbour.contains(self)
