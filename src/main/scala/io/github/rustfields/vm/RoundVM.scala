@@ -106,30 +106,36 @@ trait RoundVM:
   }
 
   /**
-   * TODO
-   * @param expr
-   * @param id
+   * Perform a folded evaluation of the given expression in the given neighbor and return the result.
+   * @param expr The expression to evaluate, which should return a value of type `A`.
+   * @param id The id of the neighbor.. It is of type `i32`.
    * @tparam A
-   * @return
+   * @return An `Option` containing the result of the expression.
    */
   def foldedEval[A](expr: => A)(id: Int): Option[A]
 
   /**
-   * TODO
-   * @param slot the slot to use
-   * @param write whether to write the result in the export
-   * @param inc whether to increment the index
-   * @param expr the expression to evaluate
+   * Nest the current status, execute the given expression, and return the result.
+   *
+   * This function updates the status by pushing a nested slot, and
+   * evaluates the provided expression. The result of the expression is returned after restoring
+   * the status to its previous state.
+   *
+   * @param slot The slot to nest in the current status.
+   * @param write A boolean flag indicating whether to perform a write operation.
+   * @param inc A boolean flag indicating whether to increment the index after nesting.
+   * @param expr The expression to evaluate, which should return a value of type `A`.
    * @tparam A
    * @return the result of the expression
    */
   def nest[A](slot: Slot)(write: Boolean, inc: Boolean = true)(expr: => A): A
 
+
   /**
-   * TODO
+   * Evaluates the given expression locally and return the result.
    * @param a the expression to evaluate
    * @tparam A
-   * @return the result of the expression
+   * @return the result of the closure
    */
   def locally[A](a: => A): A
 
