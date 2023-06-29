@@ -56,7 +56,7 @@ trait RoundVM:
     exportData.put(Path.empty(), v)
 
   /**
-   * Obtain the value corresponding to the actual path from the context export.
+   * Obtain the value corresponding to the actual path from the previous round export.
    * @tparam A
    * @return the value if it exists
    */
@@ -65,9 +65,9 @@ trait RoundVM:
 
   /**
    * Obtain the value corresponding to the actual path from the neighbour.
-   * or throw an exception if the neighbour is unknown.
    * @tparam A
-   * @return
+   * @return the value corresponding to the actual path from the neighbour.
+   * @throws OutOfDomainException if the neighbour is unknown.
    */
   def neighbourVal[A]: A = context
     .readExportValue[A](neighbour.get, status.path)
@@ -75,10 +75,10 @@ trait RoundVM:
 
   /**
    * Get the value of a given sensor from the actual context.
-   * Or throw an exception if the sensor is unknown.
    * @param name the name of the sensor
    * @tparam A
-   * @return the value if it exists
+   * @return the value if it exists.
+   * @throws SensorUnknownException if the sensor is unknown.
    */
   def localSense[A](name: Sensor): A = context
     .localSense[A](name)
@@ -100,24 +100,22 @@ trait RoundVM:
 
   /**
    * Perform a folded evaluation of the given expression in the given neighbor and return the result.
-   * @param expr The expression to evaluate, which should return a value of type `A`.
-   * @param id The id of the neighbor.. It is of type `i32`.
+   * @param expr The expression to evaluate.
+   * @param id The id of the neighbor.
    * @tparam A
-   * @return An `Option` containing the result of the expression.
+   * @return An Option containing the result of the expression.
    */
   def foldedEval[A](expr: => A)(id: Int): Option[A]
 
   /**
    * Nest the current status, execute the given expression, and return the result.
-   *
    * This function updates the status by pushing a nested slot, and
    * evaluates the provided expression. The result of the expression is returned after restoring
    * the status to its previous state.
-   *
    * @param slot The slot to nest in the current status.
    * @param write A boolean flag indicating whether to perform a write operation.
    * @param inc A boolean flag indicating whether to increment the index after nesting.
-   * @param expr The expression to evaluate, which should return a value of type `A`.
+   * @param expr The expression to evaluate.
    * @tparam A
    * @return the result of the expression
    */
