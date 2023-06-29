@@ -34,13 +34,6 @@ trait RoundVM:
   def exportData: Export = exports.head
 
   /**
-   * The id of the device
-   *
-   * @return the id
-   */
-  def selfID: Int = context.selfID
-
-  /**
    * If the computation is folding on a neighbor, get the id of the neighbor
    *
    * @return the id
