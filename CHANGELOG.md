@@ -1,3 +1,20 @@
+## [4.0.0](https://github.com/RustFields/ScaFi-core/compare/3.1.0...4.0.0) (2023-06-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove duplicated API
+
+### Dependency updates
+
+* **deps:** update dependency sbt/sbt to v1.9.1 ([56795a2](https://github.com/RustFields/ScaFi-core/commit/56795a20edf41890148528e4692015dec120c19e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.38 ([7b76190](https://github.com/RustFields/ScaFi-core/commit/7b761908eebc3e01fb965e1e7783c94257947658))
+
+
+### Refactoring
+
+* remove duplicated API ([b41c9f6](https://github.com/RustFields/ScaFi-core/commit/b41c9f69b599eb9099c71e566b62e29bddefcea2))
+
 ## [3.1.0](https://github.com/RustFields/ScaFi-core/compare/3.0.0...3.1.0) (2023-06-22)
 
 
