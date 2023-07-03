@@ -18,7 +18,7 @@ trait RoundVM:
   def status: VMStatus
 
   /**
-   * The exports of the context.
+   * The exports of the device.
    * @return the list of the current exports.
    */
   def exports: List[Export]
