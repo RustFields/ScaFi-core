@@ -1,3 +1,22 @@
+## [4.0.1](https://github.com/RustFields/ScaFi-core/compare/4.0.0...4.0.1) (2023-07-03)
+
+
+### Bug Fixes
+
+* remove useless function exportStack ([c1a7741](https://github.com/RustFields/ScaFi-core/commit/c1a77419d15144668e6715b7b640fcf05f3c4d81))
+
+
+### General maintenance
+
+* solve merge conflict ([e2e4896](https://github.com/RustFields/ScaFi-core/commit/e2e4896c581a3b277e5ffd6feeebaaba6bc3c760))
+
+
+### Documentation
+
+* finish RoundVM's doc ([8b3fb69](https://github.com/RustFields/ScaFi-core/commit/8b3fb69e49908b73e78b7cbac0aba0d0d12db7d7))
+* fix docs in RoundVM ([fb169d4](https://github.com/RustFields/ScaFi-core/commit/fb169d4c2a2b046410c68c995f33d0a86740746f))
+* fix typos ([1fb21e2](https://github.com/RustFields/ScaFi-core/commit/1fb21e271ad61a944094ea88aadc886bd9f1adb2))
+
 ## [4.0.0](https://github.com/RustFields/ScaFi-core/compare/3.1.0...4.0.0) (2023-06-29)
 
 
