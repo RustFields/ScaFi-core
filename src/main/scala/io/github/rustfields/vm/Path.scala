@@ -1,8 +1,5 @@
 package io.github.rustfields.vm
 
-import scala.annotation.targetName
-import scala.collection.IterableFactory
-
 /** A path is a list of slots that represent a path in a tree. The path works
   * like a stack.
   */
