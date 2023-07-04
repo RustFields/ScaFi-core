@@ -1,3 +1,10 @@
+## [4.1.0](https://github.com/RustFields/ScaFi-core/compare/4.0.1...4.1.0) (2023-07-04)
+
+
+### Features
+
+* add dsl for creating Paths ([0d1c96e](https://github.com/RustFields/ScaFi-core/commit/0d1c96e13d93d5221ff82e7f3b545b66d8b622e7))
+
 ## [4.0.1](https://github.com/RustFields/ScaFi-core/compare/4.0.0...4.0.1) (2023-07-03)
 
 
