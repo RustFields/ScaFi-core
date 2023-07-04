@@ -15,7 +15,7 @@ class TestByEquivalence extends AnyFlatSpec:
     val execSequence: LazyList[Int] = LazyList.continually(Random.nextInt(3)).take(100)
     val devicesAndNbrs: Map[Int, List[Int]] = fullyConnectedTopologyMap(List(0, 1, 2))
 
-  "foldhood" should "work with multiple nbrs" in {
+  "fold" should "work with multiple nbrs" in {
     val fixture = new Fixture
     assertEquivalence(fixture.devicesAndNbrs, fixture.execSequence) {
       foldhood(0)(_ + _)(nbr(1) + nbr(2) + nbr(mid()))
