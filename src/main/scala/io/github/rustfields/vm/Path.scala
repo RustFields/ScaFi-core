@@ -1,5 +1,8 @@
 package io.github.rustfields.vm
 
+import scala.annotation.targetName
+import scala.collection.IterableFactory
+
 /** A path is a list of slots that represent a path in a tree. The path works
   * like a stack.
   */
@@ -48,6 +51,10 @@ object Path:
   def apply(slots: Slot*): Path = PathImpl(slots.toList.reverse)
 
   def empty(): Path = PathImpl(List())
+  
+  def /(slots: Slot*): Path = Path(slots: _*)
+
+  def / : Path = empty()
 
   private case class PathImpl(path: List[Slot]) extends Path:
 
