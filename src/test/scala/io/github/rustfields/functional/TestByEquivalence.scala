@@ -12,7 +12,7 @@ class TestByEquivalence extends AnyFlatSpec:
   import CoreTestInterpreter.*
   class Fixture:
     val random = new Random(0)
-    val execSequence: LazyList[Int] = LazyList.continually(Random.nextInt(3)).take(100)
+    val execSequence: LazyList[Int] = LazyList.continually(random.nextInt(3)).take(100)
     val devicesAndNbrs: Map[Int, List[Int]] = fullyConnectedTopologyMap(List(0, 1, 2))
 
   "fold" should "work with multiple nbrs" in {
@@ -61,7 +61,8 @@ class TestByEquivalence extends AnyFlatSpec:
   }
 
   "Performance" should "not degrade when nesting foldhoods" in {
-    val execSequence = LazyList.continually(Random.nextInt(100)).take(1000)
+    val random = new Random(0)
+    val execSequence = LazyList.continually(random.nextInt(100)).take(1000)
     val devicesAndNbrs = fullyConnectedTopologyMap(0 to 99)
     // fold.fold : performance
     // NOTE: pay attention to double overflow
