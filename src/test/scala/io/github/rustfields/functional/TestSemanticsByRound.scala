@@ -249,11 +249,11 @@ class TestSemanticsByRound extends AnyFunSpec with Matchers:
 
   Nesting("REP into FOLDHOOD should be supported") {
     // ARRANGE
-    var ctx1 = ctx(0, Map(1 -> Export(FoldHood(0) -> 7), 2 -> Export(FoldHood(0) -> 7)))
+    val ctx1 = ctx(0, Map(1 -> Export(FoldHood(0) -> 7), 2 -> Export(FoldHood(0) -> 7)))
 
     def program1 = foldhood("init")(_ + _)(rep(0)(_ + 1) + "")
 
-    var ctx2 =
+    val ctx2 =
       ctx(0, Map(1 -> Export(FoldHood(0) -> 7), 2 -> Export(FoldHood(0) -> 7, FoldHood(0) / Nbr(0) -> 7)))
 
     def program2 = foldhood("init")(_ + _)(nbr(rep(0)(_ + 1)) + "")
@@ -261,16 +261,16 @@ class TestSemanticsByRound extends AnyFunSpec with Matchers:
     // ACT + ASSERT
     val exp1 = round(ctx1, program1)
     exp1.root[String]() shouldEqual "init111"
-    ctx1 = ctx1.putExport(0, exp1)
-    round(ctx1, program1).root[String]() shouldEqual "init222"
+    val ctx1b = ctx1.putExport(0, exp1)
+    round(ctx1b, program1).root[String]() shouldEqual "init222"
 
     val exp2 = round(ctx2, program2)
     assertPossibleFolds("init", List("init", "7", "1")) {
       exp2.root[String]()
     }
-    ctx2 = ctx2.putExport(0, exp2)
+    val ctx2b = ctx2.putExport(0, exp2)
     assertPossibleFolds("init", List("init", "7", "2")) {
-      round(ctx2, program2).root[String]()
+      round(ctx2b, program2).root[String]()
     }
   }
 
