@@ -8,6 +8,7 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.matchers.should.Matchers.shouldBe
 import io.github.rustfields.vm.Path.*
+import scala.language.implicitConversions
 
 class TestSemanticsByRound extends AnyFunSpec with Matchers:
   val LocalValues, Alignment, Exports, FOLDHOOD, NBR, REP, BRANCH, SENSE, MID, NBRVAR, BUILTIN, Nesting,
@@ -251,12 +252,12 @@ class TestSemanticsByRound extends AnyFunSpec with Matchers:
     // ARRANGE
     val ctx1 = ctx(0, Map(1 -> Export(FoldHood(0) -> 7), 2 -> Export(FoldHood(0) -> 7)))
 
-    def program1 = foldhood("init")(_ + _)(rep(0)(_ + 1) + "")
+    def program1 = foldhood("init")(_ + _)(rep(0)(_ + 1).toString)
 
     val ctx2 =
       ctx(0, Map(1 -> Export(FoldHood(0) -> 7), 2 -> Export(FoldHood(0) -> 7, FoldHood(0) / Nbr(0) -> 7)))
 
-    def program2 = foldhood("init")(_ + _)(nbr(rep(0)(_ + 1)) + "")
+    def program2 = foldhood("init")(_ + _)(nbr(rep(0)(_ + 1)).toString)
 
     // ACT + ASSERT
     val exp1 = round(ctx1, program1)
@@ -290,10 +291,10 @@ class TestSemanticsByRound extends AnyFunSpec with Matchers:
     )
 
     // ACT + ASSERT
-    round(ctx1, foldhood("init")(_ + _)(foldhood(0)(_ + _)(1) + "")).root[String]() shouldEqual "init333"
+    round(ctx1, foldhood("init")(_ + _)(foldhood(0)(_ + _)(1).toString)).root[String]() shouldEqual "init333"
 
     assertPossibleFolds("init", List("init", "7", "2")) {
-      round(ctx1, foldhood("init")(_ + _)(nbr(foldhood(0)(_ + _)(1)) + "")).root[String]()
+      round(ctx1, foldhood("init")(_ + _)(nbr(foldhood(0)(_ + _)(1)).toString)).root[String]()
     }
   }
 

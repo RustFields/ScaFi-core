@@ -4,6 +4,7 @@ import io.github.rustfields.vm.Sensor.given
 import io.github.rustfields.vm.Slot.{Nbr, Rep}
 import io.github.rustfields.vm.{Context, Export, Sensor}
 import org.scalatest.flatspec.AnyFlatSpec
+import scala.language.implicitConversions
 
 class ContextTest extends AnyFlatSpec:
 
