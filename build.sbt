@@ -1,6 +1,7 @@
 ThisBuild / version := "5.0.0"
 ThisBuild / organization := "io.github.rustfields"
 ThisBuild / scalaVersion := "3.3.0"
+ThisBuild / scalacOptions ++= Seq("-feature", "-deprecation")
 
 lazy val root = project
   .in(file("."))
