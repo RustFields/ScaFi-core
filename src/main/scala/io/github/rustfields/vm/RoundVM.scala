@@ -154,13 +154,13 @@ trait RoundVM:
    * Whether the device is contained in the neighbor list
    * @return true if the device is contained in the neighbor list, false otherwise
    */
-  def onlyWhenFoldingOnSelf: Boolean = neighbour.forall(_ == self)
+  def unlessFoldingOnOthers: Boolean = neighbour.forall(_ == self)
 
   /**
    * Whether the device is contained in the neighbor list
    * @return true if the device is contained in the neighbor list, false otherwise
    */
-  def unlessFoldingOnOthers: Boolean = neighbour.contains(self)
+  def onlyWhenFoldingOnSelf: Boolean = neighbour.contains(self)
 
 object RoundVM:
   def apply(c: Context): RoundVM = new RoundVMImpl(c)
