@@ -1,3 +1,24 @@
+## [5.0.0](https://github.com/RustFields/ScaFi-core/compare/4.1.0...5.0.0) (2023-07-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* swap the implementations between onlyWhenFoldingOnSelf and unlessFoldingOnOthers
+
+### Bug Fixes
+
+* swap the implementations between onlyWhenFoldingOnSelf and unlessFoldingOnOthers ([416dea2](https://github.com/RustFields/ScaFi-core/commit/416dea2afa9cd481fa292ad57e2bb60477f5599a))
+
+
+### General maintenance
+
+* remove unused dependencies ([ab77b22](https://github.com/RustFields/ScaFi-core/commit/ab77b2271b08e5183dbf265ac72308445f254fb1))
+
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.39 ([daf7b6b](https://github.com/RustFields/ScaFi-core/commit/daf7b6bbe9f7a020c176ea27068b91b4f190e71a))
+
 ## [4.1.0](https://github.com/RustFields/ScaFi-core/compare/4.0.1...4.1.0) (2023-07-04)
 
 
