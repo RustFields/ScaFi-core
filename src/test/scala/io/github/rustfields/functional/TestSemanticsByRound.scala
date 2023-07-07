@@ -8,6 +8,8 @@ import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.matchers.should.Matchers.shouldBe
 import io.github.rustfields.vm.Path.*
+import io.github.rustfields.vm.RoundVM.SensorUnknownException
+
 import scala.language.implicitConversions
 
 class TestSemanticsByRound extends AnyFunSpec with Matchers:
@@ -189,7 +191,7 @@ class TestSemanticsByRound extends AnyFunSpec with Matchers:
     // ARRANGE
     val ctx1 = ctx(0, Map(), Map("a" -> 1, "b" -> 2))
     // ACT + ASSERT (failure as no sensor 'c' is found)
-    intercept[AnyRef](round(ctx1, sense[Any]("c")))
+    intercept[SensorUnknownException](round(ctx1, sense[Any]("c")))
     // ACT + ASSERT (failure if an existing sensor does not provide desired kind of data)
     intercept[AnyRef](round(ctx1, sense[Boolean]("a")))
   }
