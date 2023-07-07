@@ -1,3 +1,39 @@
+## [6.0.0](https://github.com/RustFields/ScaFi-core/compare/5.0.0...6.0.0) (2023-07-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* change Export.exports to Export.paths
+
+### General maintenance
+
+* add scalac options for deprecation and feature ([7fe494a](https://github.com/RustFields/ScaFi-core/commit/7fe494a7caa1c7f4141b442f6fe7833f8f3dcc46))
+
+
+### Build and continuous integration
+
+* add fork=true in SBT ([c506ce3](https://github.com/RustFields/ScaFi-core/commit/c506ce37fcac3dd1a237ce84819a02f53ed2f828))
+
+
+### Tests
+
+* add CoreTestInterpreter ([3a6937b](https://github.com/RustFields/ScaFi-core/commit/3a6937b117c605875b3736f89e3fa9b34bc978c2))
+* add CoreTestUtils ([41e9d99](https://github.com/RustFields/ScaFi-core/commit/41e9d99956c853e4dacaa14d6ee1541f8143e395))
+* add TestByEquivalence/ ([dc47900](https://github.com/RustFields/ScaFi-core/commit/dc479007ba10f1db51ee7f6237e388620cae62e2))
+* add TestSemanticsByRound and TestByEquivalence classes ([e0d3f3b](https://github.com/RustFields/ScaFi-core/commit/e0d3f3ba912c5895e8d835f4164dc7d46b4a0a8f))
+* add TestSemanticsByRound implementation ([35a046d](https://github.com/RustFields/ScaFi-core/commit/35a046dbbaa9adf6c1f593611585fb1d738430f6))
+* change test name ([cc567ec](https://github.com/RustFields/ScaFi-core/commit/cc567ecfce2b8a6c428b7e9f176e01e6c391e95f))
+* define Random seeds to use always the same sequence ([fc65f15](https://github.com/RustFields/ScaFi-core/commit/fc65f15c06d90c061160a42ce52d9c91d6e1b2ad))
+* fix feature and deprecation warnings ([694150e](https://github.com/RustFields/ScaFi-core/commit/694150e6fa5c4c366d5eed24574a571d404dafcf))
+* fix part of should fail if the sensor is not available ([4be69f0](https://github.com/RustFields/ScaFi-core/commit/4be69f097c991ca60834eca59480aa84f67a9f34))
+* fix should fail if the sensor is not available ([2e460be](https://github.com/RustFields/ScaFi-core/commit/2e460bed72c57b5d40cd18b89f20c9bb153b53ee))
+* swith from var to val in test ([d93b192](https://github.com/RustFields/ScaFi-core/commit/d93b192e93c6b6d8eb493ed4961ff4d7d4044bdd))
+
+
+### Refactoring
+
+* change Export.exports to Export.paths ([ec7bee1](https://github.com/RustFields/ScaFi-core/commit/ec7bee1308e8e761702700598d4148d490f8df0b))
+
 ## [5.0.0](https://github.com/RustFields/ScaFi-core/compare/4.1.0...5.0.0) (2023-07-06)
 
 
