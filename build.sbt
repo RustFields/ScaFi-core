@@ -3,6 +3,8 @@ ThisBuild / organization := "io.github.rustfields"
 ThisBuild / scalaVersion := "3.3.0"
 ThisBuild / scalacOptions ++= Seq("-feature", "-deprecation")
 
+fork := true
+
 lazy val root = project
   .in(file("."))
   .settings(
