@@ -193,7 +193,7 @@ class TestSemanticsByRound extends AnyFunSpec with Matchers:
     // ACT + ASSERT (failure as no sensor 'c' is found)
     intercept[SensorUnknownException](round(ctx1, sense[Any]("c")))
     // ACT + ASSERT (failure if an existing sensor does not provide desired kind of data)
-    intercept[AnyRef](round(ctx1, sense[Boolean]("a")))
+    intercept[AnyRef](round(ctx1, (sense[Boolean]("a")): Boolean))
   }
 
   MID("should simply evaluate to the ID of the local device") {
