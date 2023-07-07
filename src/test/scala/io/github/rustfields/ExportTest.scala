@@ -12,7 +12,7 @@ class ExportTest extends AnyFlatSpec:
     // Act
     val result = Export.empty()
     // Assert
-    assert(result.exports.isEmpty)
+    assert(result.paths.isEmpty)
   }
 
   it should "create an export from a map" in {
@@ -21,7 +21,7 @@ class ExportTest extends AnyFlatSpec:
     // Act
     val result = Export(Map(Rep(0) -> "1", Nbr(1) -> "2"))
     // Assert
-    assert(result.exports == expected)
+    assert(result.paths == expected)
   }
 
   it should "create an export from a sequence of paths and values" in {
@@ -30,7 +30,7 @@ class ExportTest extends AnyFlatSpec:
     // Act
     val result = Export(Rep(0) -> "1", Nbr(1) -> "2")
     // Assert
-    assert(result.exports == expected)
+    assert(result.paths == expected)
   }
 
   it should "get the correct value" in {
@@ -82,7 +82,7 @@ class ExportTest extends AnyFlatSpec:
     val testExport = Export(Map(Rep(0) -> "1", Nbr(1) -> "2", Path() -> "test"))
     val expected = Map(Rep(0) -> "1", Nbr(1) -> "2", Path() -> "test")
     // Act
-    val result = testExport.exports
+    val result = testExport.paths
     // Assert
     assert(result == expected)
   }

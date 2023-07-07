@@ -35,7 +35,7 @@ trait Export:
     * @return
     *   a map of all the values
     */
-  def exports: Map[Path, Any]
+  def paths: Map[Path, Any]
 
   /** Get all the values in the export.
     * @tparam A
@@ -43,7 +43,7 @@ trait Export:
     * @return
     *   a map of all the values
     */
-  def getMap[A]: Map[Path, A] = exports.view.mapValues(_.asInstanceOf[A]).toMap
+  def getMap[A]: Map[Path, A] = paths.view.mapValues(_.asInstanceOf[A]).toMap
 
 object Export:
   def empty(): Export = ExportImpl()
@@ -52,10 +52,10 @@ object Export:
 
   private case class ExportImpl(private var map: Map[Path, Any] = Map.empty) extends Export:
 
-    override def exports: Map[Path, Any] = map
+    override def paths: Map[Path, Any] = map
 
     override def put[A](path: Path, value: A): A = { map += (path -> value); value }
 
     override def root[A](): A = get(Path()).get
 
-    override def get[A](path: Path): Option[A] = exports.get(path).map(_.asInstanceOf[A])
+    override def get[A](path: Path): Option[A] = paths.get(path).map(_.asInstanceOf[A])
