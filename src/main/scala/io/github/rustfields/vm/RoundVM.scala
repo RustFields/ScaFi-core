@@ -231,7 +231,7 @@ object RoundVM:
     override def mergeExport: Any =
       val toMerge = exportData
       exports = exports.tail
-      toMerge.exports.foreach(tp => exportData.put(tp._1, tp._2))
+      toMerge.paths.foreach(tp => exportData.put(tp._1, tp._2))
 
 trait VMFactory:
   def createVM(c: Context): RoundVM
