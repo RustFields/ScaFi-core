@@ -24,6 +24,16 @@ class TestByEquivalence extends AnyFlatSpec:
     }
   }
 
+  "nbr.nbr" should "be ignored" in {
+    val fixture = new Fixture
+
+    assertEquivalence(fixture.devicesAndNbrs, fixture.execSequence) {
+      foldhood(0)(_ + _)(nbr(mid() + nbr(mid())))
+    } {
+      2 * foldhood(0)(_ + _)(nbr(mid()))
+    }
+  }
+
   "rep.nbr" should "be ignored on first argument" in {
     val fixture = new Fixture
     assertEquivalence(fixture.devicesAndNbrs, fixture.execSequence) {
