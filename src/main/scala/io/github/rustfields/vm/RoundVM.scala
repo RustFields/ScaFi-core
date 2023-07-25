@@ -232,9 +232,3 @@ object RoundVM:
       val toMerge = exportData
       exports = exports.tail
       toMerge.paths.foreach(tp => exportData.put(tp._1, tp._2))
-
-trait VMFactory:
-  def createVM(c: Context): RoundVM
-
-trait StandardVMFactory extends VMFactory:
-  override def createVM(c: Context): RoundVM = RoundVM(c)
