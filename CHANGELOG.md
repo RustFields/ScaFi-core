@@ -1,3 +1,29 @@
+## [6.0.1](https://github.com/RustFields/ScaFi-core/compare/6.0.0...6.0.1) (2023-07-26)
+
+
+### Bug Fixes
+
+* remove import ([8d53038](https://github.com/RustFields/ScaFi-core/commit/8d5303829ddbcdd25535ed306bf8131f881a5cd9))
+
+
+### Tests
+
+* add nbr.nbr should be ignored ([96f35c8](https://github.com/RustFields/ScaFi-core/commit/96f35c867cd465ac2cf7a77b35ac3363b5707a2c))
+
+
+### Dependency updates
+
+* **deps:** update dependency sbt/sbt to v1.9.2 ([90bf831](https://github.com/RustFields/ScaFi-core/commit/90bf83170dcf0b1c0eaf51447d2f3f2c778639b0))
+* **deps:** update dependency sbt/sbt to v1.9.3 ([3341826](https://github.com/RustFields/ScaFi-core/commit/3341826f3524538341687cb4a85309ac4712115a))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.41 ([5ea1065](https://github.com/RustFields/ScaFi-core/commit/5ea1065a50a02c9abeff0cb6553d1bb478516b43))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.43 ([f8d462f](https://github.com/RustFields/ScaFi-core/commit/f8d462f9b9c561a4639e1e6369e663dddd184111))
+* **deps:** update node.js to 18.17 ([ddde6d1](https://github.com/RustFields/ScaFi-core/commit/ddde6d19da0eeeda5220c45b41fc80b85441cbd7))
+
+
+### Refactoring
+
+* remove vm factory ([49530b6](https://github.com/RustFields/ScaFi-core/commit/49530b64034d955c08b42d122804db8103312fd4))
+
 ## [6.0.0](https://github.com/RustFields/ScaFi-core/compare/5.0.0...6.0.0) (2023-07-07)
 
 
