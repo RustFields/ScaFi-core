@@ -1,6 +1,6 @@
 ThisBuild / version := "6.0.1"
 ThisBuild / organization := "io.github.rustfields"
-ThisBuild / scalaVersion := "3.3.0"
+ThisBuild / scalaVersion := "3.3.3"
 ThisBuild / scalacOptions ++= Seq("-feature", "-deprecation")
 
 fork := true
